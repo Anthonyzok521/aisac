@@ -1,0 +1,24 @@
+---
+    import Nav from "../Nav/nav.astro";
+
+    //Class Tailwind
+    const headerClass = `
+        flex 
+        justify-between
+        items-center
+        h-20 w-full
+        bg-gray-800
+        text-white
+        px-4
+    `;
+---
+
+<header class={headerClass}>
+    <Nav />
+</header>
+
+<style>
+    header{
+        font-family: 'Manrope', sans-serif;
+    }
+</style>
