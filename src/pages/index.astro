@@ -5,13 +5,25 @@
 	import Footer from "../components/UI/Footer/footer.astro";
 	import Inbox from "../components/Inbox/inbox.astro";
 	import Prompt from "../components/Prompt/prompt.astro";
+	import Message from "../components/Messages/message.astro";
 ---
 
 <Layout title="AISAC">
 	<Header />
 	<Aside />
-	<main class="flex container mx-auto px-4">
-		<Inbox />
+	<main class="flex container mx-auto px-4 overflow-hidden">
+		<Inbox>
+			<div class="h-14"></div>
+			<Message role={"assistant"}/>
+			<Message role={"user"}/>
+			<Message role={"assistant"}/>
+			<Message role={"user"}/>
+			<Message role={"assistant"}/>
+			<Message role={"user"}/>
+			<Message role={"assistant"}/>
+			<Message role={"user"}/>
+			<Message role={"assistant"}/>
+		</Inbox>
 		<Prompt />
 	</main>
 	<Footer />
