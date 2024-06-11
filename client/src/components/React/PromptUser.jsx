@@ -56,15 +56,17 @@ const PromptUser = () => {
             const loading = <Loading />;
             setMessages([...messages,newMessageUser, loading]);
             //Run AI Since API
-            fetch('http://localhost:3000/api/aisac/' + prompt, {
+            fetch('http://localhost:3000/api/add-user/', {
                 method: 'POST',
-                /* headers: {
+                headers: {
                     'Content-Type': 'application/json', // Assuming you're sending JSON data
-                }, */
+                },
+                body: JSON.stringify({user: "anthony"}),
             }).then((response) => response.json()).then((data) => {
-                const newMessageAI = <Message role="assistant" prompt={data.message} key={key+(Math.random() * 100).toString()}/>;
+                /* const newMessageAI = <Message role="assistant" prompt={data.message} key={key+(Math.random() * 100).toString()}/>;
 
-                setMessages([...messages, newMessageUser, newMessageAI]);
+                setMessages([...messages, newMessageUser, newMessageAI]); */
+                console.log(data);
             }).catch((error) => {
                 console.error('Error:', error);
             });

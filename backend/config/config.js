@@ -1,14 +1,6 @@
 const historyJSON = require("../history/history.json");
 require("dotenv").config();
 
-/* let history = historyJSON.history.filter((chat) => {
-  if(chat.parts[1] != undefined){ 
-    console.log(chat.parts[1].fileData);
-    return chat.parts[1];
-  }
-});  *///historyJSON.history[4].parts[1].fileData;
-
-
 module.exports = {
   GEMINI_API_KEY : process.env.GEMINI_API_KEY || "YOUR_GEMINI_API_KEY",
 
@@ -44,4 +36,5 @@ getHistory : (files) => {
 
 addChat : (chat) => history.push(chat),
 
+dameQueso : () => process.env.QUESO || "queso",
 }
