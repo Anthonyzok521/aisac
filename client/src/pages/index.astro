@@ -1,0 +1,19 @@
+---
+	import Layout from "../layouts/Layout.astro";
+	import Header from "../components/UI/Header/header.astro";
+	import Aside from "../components/UI/Aside/aside.astro";
+	import Footer from "../components/UI/Footer/footer.astro";
+	import Inbox from "../components/Inbox/inbox.astro";
+
+	import {Suspense, lazy} from "react";
+
+---
+
+<Layout title="AISAC">
+	<Header />
+	<Aside />
+		
+		<Inbox />
+
+	<Footer />
+</Layout>
