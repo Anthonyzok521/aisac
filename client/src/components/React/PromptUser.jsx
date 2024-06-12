@@ -2,7 +2,7 @@
 import { useState, useEffect, Suspense, lazy } from "react";
 import Loading from "./Loading.jsx";
 const Message = lazy(() => import("./Message.jsx"));
-
+import Avatar from "./Avatar.jsx";
 const host = import.meta.env.VITE_URL_API || "http://localhost:3000";
 const PromptUser = ({ user }) => {
     const [messages, setMessages] = useState([]);
@@ -54,19 +54,18 @@ const PromptUser = ({ user }) => {
             //Show Message
             const newMessageUser = <Message role={user} prompt={prompt} key={key} />;
             const loading = <Loading />;
-            setMessages([...messages,newMessageUser, loading]);
+            setMessages([...messages, newMessageUser, loading]);
             //Run AI Since API
             fetch(host + '/api/aisac/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json', // Assuming you're sending JSON data
                 },
-                body: JSON.stringify({prompt: prompt}),
+                body: JSON.stringify({ prompt: prompt }),
             }).then((response) => response.json()).then((data) => {
-                const newMessageAI = <Message role="assistant" prompt={data.message} key={key+(Math.random() * 100).toString()}/>;
+                const newMessageAI = <Message role="assistant" prompt={data.message} key={key + (Math.random() * 100).toString()} />;
 
                 setMessages([...messages, newMessageUser, newMessageAI]);
-                console.log(data);
             }).catch((error) => {
                 console.error('Error:', error);
             });
@@ -81,21 +80,24 @@ const PromptUser = ({ user }) => {
 
 
     return (
-        <main className="flex container mx-auto px-4 overflow-hidden" >            
-            <div className="w-full pt-10 pb-20 flex flex-col gap-4" id="inbox">      
-            <Message role="assistant" prompt="Hola, soy tu asistente. ¿En que te puedo ayudar?" key="init" />          
-                <Suspense fallback={<Loading />}>                
-                    {messages}                
+        <main className="relative flex justify-center flex-col items-center container mx-auto px-4 overflow-hidden" >
+            <div class="flex justify-center pt-20">
+                <Avatar role="assistant" size="250" />
+            </div>
+            <div className="w-2/5 max-md:w-full max-lg:w-3/5 pt-10 pb-20 flex flex-col gap-4" id="inbox">
+                <Message role="assistant" prompt="Hola, soy tu asistente. ¿En que te puedo ayudar?" key="init" />
+                <Suspense fallback={<Loading />}>
+                    {messages}
                 </Suspense>
             </div>
 
             {/* //OnClick | Hidden Button */}
-            <div onMouseLeave={Hidden} className="h-20 z-1 flex items-end fixed left-0 bottom-0 w-full">
+            <div onMouseLeave={Hidden} className=" w-full h-20 z-1 flex items-end absolute max-md:fixed left-0 bottom-10 max-md:bottom-0 justify-center">
 
                 {/* //Textarea | Multiline */}
                 <textarea onInput={Visible} onFocus={Visible}
                     onKeyDown={(key) => { if (key.key == "Enter" && key.ctrlKey == true && show == "visible") { Submit(true); } }}
-                    aria-multiline maxLength="1000" className="transition-all duration-300 ease focus:h-20 hover:rounded-none rounded-lg outline-none p-2 w-full h-10 text-xl" name="prompt" type="text" placeholder="Escribe tu pregunta aqui">
+                    aria-multiline maxLength="1000" className="transition-all duration-300 ease focus:h-20 hover:rounded-none rounded-lg outline-none p-2 w-2/5 max-md:w-full max-lg:w-3/5 h-10 text-xl resize-none overflow-hidden" name="prompt" type="text" placeholder="Escribe tu pregunta aqui">
                 </textarea>
 
                 <button onClick={() => Submit(false)} type="submit" name="submit" className={style}>

@@ -1,5 +1,4 @@
 import { Suspense, lazy, useEffect, useState } from "react"
-import Avatar from "../React/Avatar.jsx";
 import Modal from "../React/Modal.jsx";
 import VITE_URL_API from '../../utils/config.ts';
 
@@ -31,10 +30,7 @@ const Load = () => {
         <div class='h-8 w-8 bg-white rounded-full animate-bounce [animation-delay:-0.15s]'></div>
         <div className='h-8 w-8 bg-white rounded-full animate-bounce'></div>
       </div>
-    }>
-      <div class="flex justify-center pt-20" client:load>
-        <Avatar role="assistant" size="250" />
-      </div>
+    }>      
 
       <PromptUser client:load user={user}/>
 
