@@ -3,7 +3,7 @@ import Avatar from "../React/Avatar.jsx";
 import 'https://md-block.verou.me/md-block.js';
 const Message = ({role, prompt}) => {
     //Style Messages
-
+    
     //Classes Tailwind
     const messageClass = `
     my-2
@@ -39,7 +39,7 @@ const Message = ({role, prompt}) => {
 
     const container = `
         w-full
-        ${role === 'user' ? 'bg-slate-700' : 'bg-slate-900'}
+        ${role === 'assistant' ? 'bg-slate-900' : 'bg-slate-700'}
         rounded-md
         p-2
     `;
@@ -48,7 +48,7 @@ const Message = ({role, prompt}) => {
         <div className={messageClass}>
             <div className={styleAvatar}>
                 <Avatar role={role} size={"32"}/>
-                <p className="font-bold">{role === 'assistant' ? 'Aisac' : 'Tú'}</p>        
+                <p className="font-bold">{role === 'assistant' ? 'Aisac' : role ? role : 'Tú'}</p>        
             </div>
             <div className={container}>
                 <md-block className={styleAssistant}>

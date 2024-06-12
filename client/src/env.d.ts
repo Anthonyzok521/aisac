@@ -1,5 +1,5 @@
 interface ImportMetaEnv {
-    readonly GEMINI_API_KEY: string;
+    readonly VITE_URL_API: string;
 }
 
 interface ImportMeta {

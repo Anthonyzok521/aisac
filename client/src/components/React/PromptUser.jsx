@@ -3,8 +3,8 @@ import { useState, useEffect, Suspense, lazy } from "react";
 import Loading from "./Loading.jsx";
 const Message = lazy(() => import("./Message.jsx"));
 
-const PromptUser = () => {
-
+const host = import.meta.env.VITE_URL_API || "http://localhost:3000";
+const PromptUser = ({ user }) => {
     const [messages, setMessages] = useState([]);
 
     //Style Button | Visible or Hidden
@@ -52,20 +52,20 @@ const PromptUser = () => {
             //Key
             const key = prompt[0] + prompt[prompt.length - 1] + (Math.random() * 100).toString();
             //Show Message
-            const newMessageUser = <Message role="user" prompt={prompt} key={key} />;
+            const newMessageUser = <Message role={user} prompt={prompt} key={key} />;
             const loading = <Loading />;
             setMessages([...messages,newMessageUser, loading]);
             //Run AI Since API
-            fetch('http://localhost:3000/api/add-user/', {
+            fetch(host + '/api/aisac/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json', // Assuming you're sending JSON data
                 },
-                body: JSON.stringify({user: "anthony"}),
+                body: JSON.stringify({prompt: prompt}),
             }).then((response) => response.json()).then((data) => {
-                /* const newMessageAI = <Message role="assistant" prompt={data.message} key={key+(Math.random() * 100).toString()}/>;
+                const newMessageAI = <Message role="assistant" prompt={data.message} key={key+(Math.random() * 100).toString()}/>;
 
-                setMessages([...messages, newMessageUser, newMessageAI]); */
+                setMessages([...messages, newMessageUser, newMessageAI]);
                 console.log(data);
             }).catch((error) => {
                 console.error('Error:', error);
@@ -82,7 +82,7 @@ const PromptUser = () => {
 
     return (
         <main className="flex container mx-auto px-4 overflow-hidden" >            
-            <div className="w-full py-16 pb-20 flex flex-col gap-4" id="inbox">      
+            <div className="w-full pt-10 pb-20 flex flex-col gap-4" id="inbox">      
             <Message role="assistant" prompt="Hola, soy tu asistente. ¿En que te puedo ayudar?" key="init" />          
                 <Suspense fallback={<Loading />}>                
                     {messages}                
