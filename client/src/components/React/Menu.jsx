@@ -22,7 +22,7 @@ const Menu = ({ className }) => {
     return (
         //List Menu
         <ul className="flex gap-4">
-            <li><a href="/">Home</a></li>
+            <li><h1 className="text-xl"><a href="/">Aisac</a></h1></li>
         </ul>
     )
 }
