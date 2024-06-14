@@ -1,6 +1,6 @@
 import Avatar from "../React/Avatar.jsx";
+import Markdown from "markdown-to-jsx";
 
-import 'https://md-block.verou.me/md-block.js';
 const Message = ({role, prompt}) => {
     //Style Messages
     
@@ -51,11 +51,11 @@ const Message = ({role, prompt}) => {
                 <p className="font-bold">{role === 'assistant' ? 'Aisac' : role ? role : 'Tú'}</p>        
             </div>
             <div className={container}>
-                <md-block className={styleAssistant}>
+                <Markdown >
                     
                     {prompt}
                     
-                </md-block>
+                </Markdown>
             </div>
         </div>
     )

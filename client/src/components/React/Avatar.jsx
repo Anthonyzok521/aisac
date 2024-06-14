@@ -14,12 +14,12 @@ const Avatar = ({ role, size }) => {
     return (
         //Logo AISAC
         <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} version="1.1" viewBox="0 0 512 512">
-            <g stroke-linecap="round">
-                <path d="m96.958 445.44-0.24632-276.4 159.39-122.78 158.49 124.46 0.0423 273.22" fill="#0048a2" stroke="#0180fa" stroke-linejoin="round" stroke-width="64.273" />
-                <rect x="168.27" y="320.5" width="25.009" height=".62763" fill="#003b85" stroke="#fff" stroke-width="30.394" />
-                <rect x="316.34" y="321.64" width="25.009" height=".62763" fill="#003b85" stroke="#fff" stroke-width="30.394" />
-                <path d="m479.78 480.06-227.18-153.97-220.12 153.72" fill="#0048a2" stroke="#0180fa" stroke-linejoin="round" stroke-width="64.273" />
-                <g fill="#003b85" stroke="#fff" stroke-width="30.394">
+            <g strokeLinecap="round">
+                <path d="m96.958 445.44-0.24632-276.4 159.39-122.78 158.49 124.46 0.0423 273.22" fill="#0048a2" stroke="#0180fa" strokeLinejoin="round" strokeWidth="64.273" />
+                <rect x="168.27" y="320.5" width="25.009" height=".62763" fill="#003b85" stroke="#fff" strokeWidth="30.394" />
+                <rect x="316.34" y="321.64" width="25.009" height=".62763" fill="#003b85" stroke="#fff" strokeWidth="30.394" />
+                <path d="m479.78 480.06-227.18-153.97-220.12 153.72" fill="#0048a2" stroke="#0180fa" strokeLinejoin="round" strokeWidth="64.273" />
+                <g fill="#003b85" stroke="#fff" strokeWidth="30.394">
                     <rect x="167.68" y="206.92" width="25.009" height=".62763" />
                     <rect x="167.68" y="264.01" width="25.009" height=".62763" />
                     <rect x="315.75" y="208.06" width="25.009" height=".62763" />

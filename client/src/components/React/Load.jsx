@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect, useState } from "react"
+import { Suspense, lazy, useEffect, useState} from "react"
 import Modal from "../React/Modal.jsx";
 import VITE_URL_API from '../../utils/config.ts';
 
@@ -10,6 +10,7 @@ const PromptUser = lazy(() => import("./PromptUser.jsx"));
 const Load = () => {
 
   const [user, setUser] = useState();
+
   const cookies = new Cookies();
 
   useEffect(() => {
@@ -32,7 +33,7 @@ const Load = () => {
       </div>
     }>      
 
-      <PromptUser client:load user={user}/>
+      <PromptUser key={user+'prompt'} client:load user={user} />
 
       {!user && <Modal client:load/>}
 
