@@ -51,7 +51,7 @@ const Modal = () => {
         <div className="text-sm font-poppins font-bold">Términos y Condiciones</div>
         <div className="flex">
           <div className="h-full w-full">
-            <a href="/terms" className="underline text-sm font-poppins">Antes de continuar, por favor lee y acepta los términos y condiciones.</a>
+            <a href="/terms" target="_blank" className="underline text-sm font-poppins">Antes de continuar, por favor lee y acepta los términos y condiciones.</a>
           </div>
           <div className={styleCheck} onClick={checkTerms}>
             {check ? <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
