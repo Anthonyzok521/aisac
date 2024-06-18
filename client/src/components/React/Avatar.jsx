@@ -1,6 +1,6 @@
 //Show Icon Avatar | User or AI
 import Icon from "../../../public/favicon.svg";
-const Avatar = ({ role, size }) => {
+const Avatar = ({ role = '', size = '' }) => {
     if (role != "assistant") {
         return (
             //User Icon | SVG - Heroicons
