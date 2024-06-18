@@ -6,6 +6,8 @@ const { dameQueso } = require("./config/config");
 const { AISAC } = require("./api/gemini.js");
 const aisac = new AISAC();
 
+require('dotenv').config();
+
 app.use(express.json());
 app.use(cors());
 
@@ -13,6 +15,7 @@ aisac.LoadFiles();
 
 app.get('/', async (req, res) => {
     aisac.LoadFiles();
+    console.log({message:"AISAC Initialized"})
     res.json({message:"AISAC Initialized"});
 })
 
@@ -23,6 +26,7 @@ app.post('/api/aisac/', async (req, res) => {
 
     aisac.Run(prompt).then((result) => {
         res.json({message:result.response.text()});
+        console.log({message:"ANSWERR"})
     })
     .catch((error) => {
         console.error(error);
@@ -32,6 +36,7 @@ app.post('/api/aisac/', async (req, res) => {
 
 app.get('/api/aisac/', async (req, res) => {
     res.json({message:"LIVE"});
+    console.log({message:"TEST"})
 })
 
 app.listen(process.env.PORT || 3000);
