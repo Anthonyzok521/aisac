@@ -4,7 +4,7 @@ import { useState, useEffect, Suspense, lazy } from "react";
 import Loading from "./Loading.jsx";
 const Message = lazy(() => import("./Message.jsx"));
 import Avatar from "./Avatar.jsx";
-const host = import.meta.env.VITE_URL_API || "http://localhost:3000";
+const host = 'https://aisac-api.onrender.com';
 const PromptUser = ({ user }) => {
     const [messages, setMessages] = useState([]);
 
