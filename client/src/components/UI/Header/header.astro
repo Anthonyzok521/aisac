@@ -1,8 +1,9 @@
 ---
     import Nav from "../Nav/nav.astro";
+    import Profile from "../../React/Profile.jsx";
+---
 
-    //Class Tailwind
-    const headerClass = `
+<header class=" z-9
         flex 
         justify-between
         items-center
@@ -13,17 +14,15 @@
         shadow-slate-700
         backdrop-blur-sm
         fixed
-    `;
----
-
-<header class={headerClass}>
+        font-manrope">
     <Nav />
+    <Profile client:only/>
 </header>
 
 <style>
     header{
         font-family: 'Manrope', sans-serif;
         background-color: rgba(34, 44, 58, 0.562);
-        z-index: 1;
+        z-index: 11;
     }
 </style>

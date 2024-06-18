@@ -22,7 +22,9 @@ const Modal = () => {
   }
 
   const insertName = () => {
-    cookies.set('user_sid', user, { path: '/' });
+    const expires = new Date();
+    expires.setFullYear(expires.getFullYear() + 1);
+    cookies.set('user_sid', user, { path: '/', expires: expires});
     setUser(user);
     document.querySelector("#modal").classList.add("hidden");
   }

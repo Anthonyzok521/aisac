@@ -2083,9 +2083,9 @@ Lunes : 16 / 09:50am
 Distancia: 2 horas
 Cupo: 30
 
-## Miguel
+## Cesar
 
-## Hernandez
+## Montilla
 
 ```
 Lunes : Lab-2 /
@@ -2145,9 +2145,9 @@ Martes : 4 / 07:45am
 Distancia: 2 horas
 Cupo: 30
 
-## Miguel
+## Cesar
 
-## Hernandez
+## Montilla
 
 ```
 Lunes : Lab-2 /

@@ -25,7 +25,7 @@ const Load = () => {
   return (
 
     <Suspense fallback={
-      <div className='absolute inset-0 z-10 top-0 flex space-x-2 justify-center items-center bg-slate-900 bg-opacity-25 backdrop-blur h-screen transition-all'>
+      <div className='absolute inset-0 z-30 top-0 flex space-x-2 justify-center items-center bg-slate-900 bg-opacity-25 backdrop-blur h-screen transition-all'>
         <span className='sr-only'>Loading...</span>
         <div className='h-8 w-8 bg-white rounded-full animate-bounce [animation-delay:-0.3s]'></div>
         <div className='h-8 w-8 bg-white rounded-full animate-bounce [animation-delay:-0.15s]'></div>

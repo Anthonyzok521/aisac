@@ -112,9 +112,9 @@ const PromptUser = ({ user }) => {
                 console.error('Error:', error);
             });
 
-            const newMessageAI = <Message role="assistant" prompt={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas similique, dolor voluptatibus odit deserunt tenetur modi voluptate molestiae, id tempora tempore minima. Modi placeat assumenda ex debitis unde totam a!"} key={key + (Math.random() * 100).toString()} />;
+            /* const newMessageAI = <Message role="assistant" prompt={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas similique, dolor voluptatibus odit deserunt tenetur modi voluptate molestiae, id tempora tempore minima. Modi placeat assumenda ex debitis unde totam a!"} key={key + (Math.random() * 100).toString()} />;
 
-                setMessages([...messages, newMessageUser, newMessageAI]);
+                setMessages([...messages, newMessageUser, newMessageAI]); */
         }
         Hidden();
     }
@@ -137,7 +137,7 @@ const PromptUser = ({ user }) => {
 
 
     return (
-        <main className="h-screen relative flex justify-center flex-col items-center container mx-auto px-4 overflow-hidden" >            
+        <main className="h-screen relative flex justify-center flex-col items-center container mx-auto px-4 overflow-hidden z-14" >            
             <div className="overflow-y-auto snap-mandatory snap-y w-2/5 max-md:w-full max-lg:w-3/5 pt-20 pb-24 flex flex-col gap-4" id="inbox">
             <div className=" flex justify-center pt-0">
                 <Avatar role="assistant" size="250" />                
