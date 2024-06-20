@@ -25,17 +25,17 @@ app.post('/api/aisac/', async (req, res) => {
     const prompt = req.body.prompt;    
 
     aisac.Run(prompt).then((result) => {
-        res.json({message:result.response.text()});
-        console.log({message:"ANSWERR"})
+        /* console.log({message:"ANSWERR", details: result.response.candidates.content}); */
+        res.json({message:result.response.text()});        
     })
     .catch((error) => {
         console.error(error);
-        res.status(500).json({ error: 'Internal server error' , chatSession: aisac.chatSession});
+        res.json({ error: error});
     });
 });
 
 app.get('/api/aisac/', async (req, res) => {
-    res.json({message:"LIVE"});
+    res.send({message:"LIVE"});
     console.log({message:"TEST"})
 })
 
