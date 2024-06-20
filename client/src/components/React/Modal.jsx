@@ -1,5 +1,4 @@
 import { useState } from "react";
-import VITE_URL_API from "../../utils/config.ts";
 import Cookies from "universal-cookie";
 
 const Modal = () => {

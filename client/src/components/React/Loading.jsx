@@ -1,6 +1,6 @@
-const Loading = ({role}) => {
+const Loading = ({ role }) => {
 
-  const messageClass = `
+    const messageClass = `
     my-2
     w-full
     flex
@@ -47,16 +47,16 @@ const Loading = ({role}) => {
     return (
         <div className={messageClass}>
             <div className={styleAvatar}>
-               <div className="w-10 h-10 rounded-full bg-slate-500"></div>
-                <div className="w-20 h-6 rounded-sm  bg-slate-500"></div>        
+                <div className="w-10 h-10 rounded-full bg-slate-500"></div>
+                <div className="w-20 h-6 rounded-sm  bg-slate-500"></div>
             </div>
             <div className={container}>
                 <div className={styleAssistant}>
-                    
-                   <div className="w-20 h-6 rounded-sm  bg-slate-500"></div>
-                   <div className="w-30 h-6 rounded-sm  bg-slate-500"></div>
-                   <div className="w-36 h-6 rounded-sm  bg-slate-500"></div>
-                    
+
+                    <div className="w-20 h-6 rounded-sm  bg-slate-500"></div>
+                    <div className="w-30 h-6 rounded-sm  bg-slate-500"></div>
+                    <div className="w-36 h-6 rounded-sm  bg-slate-500"></div>
+
                 </div>
             </div>
         </div>

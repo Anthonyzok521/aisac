@@ -2,10 +2,11 @@
 import '../../style/global.css';
 import { useState, useEffect, Suspense, lazy } from "react";
 import Loading from "./Loading.jsx";
-const Message = lazy(() => import("./Message.jsx"));
 import Avatar from "./Avatar.jsx";
-const host = 'https://aisac-api.onrender.com';
-const PromptUser = ({ user }) => {
+
+const Message = lazy(() => import("./Message.jsx"));
+
+const PromptUser = ({ user, host }) => {
     const [messages, setMessages] = useState([]);
 
     //Style Button | Visible or Hidden
@@ -15,8 +16,8 @@ const PromptUser = ({ user }) => {
     useEffect(() => {
 
         if (window.screen.width >= 768) {
-            setInPC(true);            
-        }else{
+            setInPC(true);
+        } else {
             setInPC(false);
         }
     }, []);
@@ -34,46 +35,46 @@ const PromptUser = ({ user }) => {
 
     //OnClick | Hidden Button
     const Hidden = () => {
-        if(inPC) {
+        if (inPC) {
             setShow("disabled");
-            
+
             document.querySelector("#container-btn-submit").classList.remove("bg-sky-500");
-            document.querySelector("#container-btn-submit").classList.add("bg-white"); 
-        }else{
+            document.querySelector("#container-btn-submit").classList.add("bg-white");
+        } else {
             setShow("hidden");
-        }        
+        }
     }
     const Visible = (mouse = '') => {
-        if(!inPC) {
+        if (!inPC) {
             if (document.querySelector("textarea").value !== "") {
                 document.querySelector("#btn-submit").removeAttribute("disabled");
                 document.querySelector("#btn-submit").setAttribute("enabled", "");
                 setShow("visible");
             } else {
-                document.querySelector("#btn-submit").removeAttribute("enabled");                
+                document.querySelector("#btn-submit").removeAttribute("enabled");
                 document.querySelector("#btn-submit").setAttribute("disabled", "");
                 setShow("hidden");
             }
-        }else{
+        } else {
             if (document.querySelector("textarea").value !== "") {
                 document.querySelector("#btn-submit").removeAttribute("disabled");
                 document.querySelector("#btn-submit").setAttribute("enabled", "");
                 document.querySelector("#container-btn-submit").classList.remove("bg-white");
-                document.querySelector("#container-btn-submit").classList.add("bg-sky-500");         
+                document.querySelector("#container-btn-submit").classList.add("bg-sky-500");
             } else {
-                document.querySelector("#btn-submit").removeAttribute("enabled");                
+                document.querySelector("#btn-submit").removeAttribute("enabled");
                 document.querySelector("#btn-submit").setAttribute("disabled", "");
                 document.querySelector("#container-btn-submit").classList.remove("bg-sky-500");
-                document.querySelector("#container-btn-submit").classList.add("bg-white");         
+                document.querySelector("#container-btn-submit").classList.add("bg-white");
             }
         }
 
         if (mouse == 'enter') {
             if (document.querySelector("textarea").focus() && !inPC) {
                 setShow("visible");
-            }else if(document.querySelector("textarea").focus() && inPC){
+            } else if (document.querySelector("textarea").focus() && inPC) {
                 setShow("enabled");
-                
+
             };
         }
     }
@@ -92,7 +93,7 @@ const PromptUser = ({ user }) => {
             document.querySelector("textarea").value = "";
 
             //Key
-            const key = prompt[0] + ((Math.random() * 100)/3).toString() + prompt[prompt.length - 1];
+            const key = prompt[0] + ((Math.random() * 100) / 3).toString() + prompt[prompt.length - 1];
             //Show Message
             const newMessageUser = <Message role={user} prompt={prompt} key={key} />;
             const loading = <Loading />;
@@ -104,12 +105,14 @@ const PromptUser = ({ user }) => {
                     'Content-Type': 'application/json', // Assuming you're sending JSON data
                 },
                 body: JSON.stringify({ prompt: prompt }),
-            }).then((response) => response.json()).then((data) => {
+            }).then((response) => response.json()).then((data) => {                
                 const newMessageAI = <Message role="assistant" prompt={data.message} key={key + (Math.random() * 100).toString()} />;
-
                 setMessages([...messages, newMessageUser, newMessageAI]);
             }).catch((error) => {
-                console.error('Error:', error);
+                console.error(error);
+                const newMessageAI = <Message role="assistant" prompt={"Ocurrió un error por parte del servidor. Intenta otra vez."} key={key + (Math.random() * 100).toString()} />;
+
+                setMessages([...messages, newMessageUser, newMessageAI]);
             });
 
             /* const newMessageAI = <Message role="assistant" prompt={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas similique, dolor voluptatibus odit deserunt tenetur modi voluptate molestiae, id tempora tempore minima. Modi placeat assumenda ex debitis unde totam a!"} key={key + (Math.random() * 100).toString()} />;
@@ -119,29 +122,29 @@ const PromptUser = ({ user }) => {
         Hidden();
     }
 
-    const elevatePromptFocus = () => {        
+    const elevatePromptFocus = () => {
         document.querySelector("#prompt").classList.remove("h-12");
         document.querySelector("#prompt").classList.add("h-20");
     }
 
-    const elevatePromptBlur = () => {        
+    const elevatePromptBlur = () => {
         document.querySelector("#prompt").classList.remove("h-20");
         document.querySelector("#prompt").classList.add("h-12");
     }
 
     useEffect(() => {
         //Scroll
-        document.querySelectorAll("#inbox > div")[document.querySelectorAll('#inbox>div').length - 1].scrollIntoView({ behavior: "smooth"});
+        document.querySelectorAll("#inbox > div")[document.querySelectorAll('#inbox>div').length - 1].scrollIntoView({ behavior: "smooth" });
 
     }, [messages]);
 
 
     return (
-        <main className="h-screen relative flex justify-center flex-col items-center container mx-auto px-4 overflow-hidden z-14" >            
+        <main className="h-screen relative flex justify-center flex-col items-center container mx-auto px-4 overflow-hidden z-14" >
             <div className="overflow-y-auto snap-mandatory snap-y w-2/5 max-md:w-full max-lg:w-3/5 pt-20 pb-24 flex flex-col gap-4" id="inbox">
-            <div className=" flex justify-center pt-0">
-                <Avatar role="assistant" size="250" />                
-            </div>
+                <div className=" flex justify-center pt-0">
+                    <Avatar role="assistant" size="250" />
+                </div>
                 <Message role="assistant" prompt="Hola, soy tu asistente. ¿En que te puedo ayudar?" key="init" />
                 <Suspense fallback={<Loading />}>
                     {messages}
@@ -152,7 +155,7 @@ const PromptUser = ({ user }) => {
             <div id="prompt" className="transition-all duration-300 ease w-full h-12 max-h-max z-1 flex items-end absolute max-md:fixed bottom-10 max-md:bottom-0 justify-center">
 
                 {/* //Textarea | Multiline */}
-                <textarea 
+                <textarea
                     onInput={Visible}
                     onFocus={elevatePromptFocus}
                     onBlur={elevatePromptBlur}
@@ -163,14 +166,14 @@ const PromptUser = ({ user }) => {
                     max-md:focus:rounded-lg
                     max-md:pr-10
                     outline-none p-2 w-2/5 max-md:w-full max-lg:w-3/5 h-full text-xl resize-none overflow-x-auto" name="prompt" type="text" placeholder="Escribe tu pregunta aqui">
-                </textarea> 
+                </textarea>
                 <div onClick={() => Submit(false)} id="container-btn-submit" className="transition-all h-full flex justify-center items-center bg-white rounded-e-3xl max-md:absolute max-md:right-0 max-md:bg-transparent">
-                <button disabled id="btn-submit" type="submit" name="submit" className={style}>
-                    {/* Icon Submit | SVG - Heroicons */}
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
-                    </svg>
-                </button>
+                    <button disabled id="btn-submit" type="submit" name="submit" className={style}>
+                        {/* Icon Submit | SVG - Heroicons */}
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+                        </svg>
+                    </button>
                 </div>
             </div>
         </main>
