@@ -1,0 +1,24 @@
+import React from "react";
+import { FaFileUpload } from "react-icons/fa";
+
+export const Upload: React.FC = () => {
+  const handleClick = () => {};
+
+  return (
+    <div
+      id="upload"
+      className="flex justify-start items-center max-md:opacity-0 duration-100 hover:bg-slate-500 hover:cursor-pointer p-2 rounded-lg"
+      onClick={handleClick}
+    >
+      <div className="flex justify-center items-center gap-6 ">
+        <div className="size-9 flex justify-center items-center">
+          <FaFileUpload className="text-white size-9 active:size-8 active:text-sky-500 transition-all md:hover:text-sky-500" />
+        </div>
+
+        <span id="uploadText" className="text-white font-manrope font-extrabold transition-all select-none">
+          Subir un archivo
+        </span>
+      </div>
+    </div>
+  );
+};

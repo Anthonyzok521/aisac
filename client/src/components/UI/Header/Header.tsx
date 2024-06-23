@@ -1,18 +1,15 @@
 import React from "react";
-import { Nav } from "./Menu/Nav";
-import { Aside } from "./Menu/Aside";
+import { Profile } from "../../Icon/Profile";
+import { Menu } from "../../Icon/Menu";
 
 type Props = {
   device: string;
-}
-
-const Header: React.FC<Props> = (props: Props) => {
-  return (
-      <header className="relative p-2 bg-white w-full border-b-8">
-        <Nav device={props.device} />
-        <Aside device={props.device} />
-      </header>
-  );
 };
 
-export default Header;
+export const Header: React.FC<Props> = (props: Props) => {
+  return (
+    <header className="fixed top-0 p-4 w-full h-16 flex justify-between">      
+        <Menu device={props.device}/><Profile device={props.device}/>
+    </header>
+  );
+};
