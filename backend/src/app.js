@@ -39,6 +39,6 @@ app.get('/api/aisac/', async(req, res) => {
     console.log({ message: "TEST" })
 })
 
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 4040);
 
 module.exports = app;

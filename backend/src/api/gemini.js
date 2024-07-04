@@ -1,7 +1,7 @@
-const {GoogleGenerativeAI} = require("@google/generative-ai");
-const {GoogleAIFileManager} = require("@google/generative-ai/files");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+const { GoogleAIFileManager } = require("@google/generative-ai/files");
 
-const {GEMINI_API_KEY, SYSTEM_INSTRUCTION, GENERATION_CONFIG, getHistory} = require("../config/config");
+const { GEMINI_API_KEY, SYSTEM_INSTRUCTION, GENERATION_CONFIG, getHistory } = require("../config/config");
 
 class AISAC {
     constructor() {
@@ -13,7 +13,7 @@ class AISAC {
         this.model = this.genAI.getGenerativeModel({
             model: "gemini-1.5-pro",
             systemInstruction: SYSTEM_INSTRUCTION,
-            });
+        });
 
         this.generationConfig = GENERATION_CONFIG;
 
@@ -22,7 +22,7 @@ class AISAC {
         //Singleton
         if (AISAC.instance) {
             console.log("AISAC initialized already");
-            return AISAC.instance;            
+            return AISAC.instance;
         }
         AISAC.instance = this;
         console.log("AISAC initialized");
@@ -45,7 +45,7 @@ class AISAC {
             let file = await this.fileManager.getFile(name);
             while (file.state === "PROCESSING") {
                 //process.stdout.write(".")
-                await new Promise((resolve) => setTimeout(resolve, 10_000));
+                await new Promise((resolve) => setTimeout(resolve, 10000));
                 file = await this.fileManager.getFile(name);
             }
             if (file.state !== "ACTIVE") {
@@ -66,19 +66,19 @@ class AISAC {
         return result;
     }
 
-    async LoadFiles(){
+    async LoadFiles() {
         const files = [
-            await this.uploadToGemini("documents/Pensum-Informática-2024.md", "text/markdown"),
-            await this.uploadToGemini("documents/Horarios-Profesores-Informática.md", "text/markdown"),
+            await this.uploadToGemini("src/documents/Pensum-Informática-2024.md", "text/markdown"),
+            await this.uploadToGemini("src/documents/Horarios-Profesores-Informática.md", "text/markdown"),
         ];
 
         const chatSession = this.model.startChat({
-            generationConfig : this.generationConfig,
+            generationConfig: this.generationConfig,
             // safetySettings: Adjust safety settings
             // See https://ai.google.dev/gemini-api/docs/safety-settings
             history: getHistory(files)
         });
-        
+
         await this.waitForFilesActive(files);
 
         this.setChatSession(chatSession);
