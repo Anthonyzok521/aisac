@@ -3,7 +3,7 @@ const app = express();
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const { dameQueso } = require("./config/config");
-const { AISAC } = require("../api/gemini.js");
+const { AISAC } = require("./api/gemini.js");
 const aisac = new AISAC();
 
 require('dotenv').config();
@@ -40,3 +40,5 @@ app.get('/api/aisac/', async(req, res) => {
 })
 
 app.listen(process.env.PORT || 3000);
+
+module.exports = app;
