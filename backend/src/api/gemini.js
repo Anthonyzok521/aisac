@@ -63,8 +63,13 @@ class AISAC {
         const text = response.text();
         console.log(text); */
 
-        const result = await this.chatSession.sendMessage(prompt);
-        return result;
+        try {
+            const result = await this.chatSession.sendMessage(prompt);
+            return result;
+        } catch (err) {
+            console.log(err);
+            return err;
+        }
     }
 
     async LoadFiles() {

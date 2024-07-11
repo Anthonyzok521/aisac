@@ -4,7 +4,8 @@ import {Message} from "./Message.tsx";
 import {Loading} from "./Loading.tsx";
 
 type Props = {
-  messages: Array<React.ReactNode>;
+  messages: Array<React.ReactNode>,
+  key: string
 };
 
 export const Inbox: React.FC<Props> = ({messages}: Props) => {
@@ -21,7 +22,7 @@ export const Inbox: React.FC<Props> = ({messages}: Props) => {
         prompt="Hola, soy tu asistente. ¿En que te puedo ayudar?"
         key="init"
       />
-      <Suspense fallback={<Loading />}>{messages}</Suspense>
+      <Suspense fallback={<Loading key={"loading"}/>}>{messages}</Suspense>
     </div>
   );
 };

@@ -34,7 +34,7 @@ export const Load: React.FC<Props> = ({device}: Props) => {
       </div>
     }>      
 
-      <PromptUser device={device} user={user ?? "Tú"}/>
+      <PromptUser device={device} user={user ?? "Tú"} key={"prompt"}/>
 
       {!user && <Modal />}
 

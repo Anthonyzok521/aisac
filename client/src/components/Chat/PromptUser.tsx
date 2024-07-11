@@ -178,7 +178,7 @@ export const PromptUser: React.FC<Props> = (props: Props) => {
 
   return (
     <>
-      <Inbox messages={messages} />
+      <Inbox messages={messages} key={"inbox"}/>
 
       {/* //OnClick | Hidden Button */}
       <div
@@ -211,7 +211,7 @@ export const PromptUser: React.FC<Props> = (props: Props) => {
           id="container-btn-submit"
           className="transition-all h-full flex justify-center items-center bg-white rounded-e-3xl max-md:absolute max-md:right-0 max-md:bg-transparent"
         >
-          <ButtonSubmit inPC={inPC} />
+          <ButtonSubmit inPC={inPC} key={"btnSubmit"}/>
         </div>
         {inPC && (
           <div className="absolute -bottom-10">
