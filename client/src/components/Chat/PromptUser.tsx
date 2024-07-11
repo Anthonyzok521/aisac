@@ -95,7 +95,6 @@ export const PromptUser: React.FC<Props> = (props: Props) => {
       //Get Prompt
       const textarea = document.querySelector("textarea");
       const prompt: string = textarea?.value || "";
-      console.log(prompt);
       //Reset Prompt
 
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
