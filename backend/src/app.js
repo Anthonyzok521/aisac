@@ -8,7 +8,7 @@ const aisac = new AISAC();
 
 require('dotenv').config();
 
-const whitelist = [process.env.HOST];
+const whitelist = [process.env.HOST_1, process.env.HOST_2];
 
 app.use(express.json());
 app.use(cors({
