@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { RiMenuUnfold3Fill, RiMenuUnfold4Fill } from "react-icons/ri";
 
 type Props = {

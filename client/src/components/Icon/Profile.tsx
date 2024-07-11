@@ -30,17 +30,19 @@ export const Profile: React.FC<Props> = (props: Props) => {
   const handleClick = () => {
     const asideProfile = document.querySelector("#asideProfile");
     if (!click) {
+      //@ts-expect-error 'asideProfile' is possibly 'null'.ts(18047)
       asideProfile.classList = visibility(props.device);
       setClick(true);
       return;
     }    
+    //@ts-expect-error 'asideProfile' is possibly 'null'.ts(18047)
     asideProfile.classList = hidden(props.device);
     setClick(false);
   };
 
-  /* useEffect(() => {
+  useEffect(() => {
     setUser(cookies.get('user_sid')[0] ?? 'Tú');
-  }, []); */
+  }, []);
 
   return (
     <div

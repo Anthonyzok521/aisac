@@ -21,7 +21,7 @@ export const Inbox: React.FC<Props> = ({messages}: Props) => {
         prompt="Hola, soy tu asistente. ¿En que te puedo ayudar?"
         key="init"
       />
-      <Suspense fallback={<Loading role="assistant" />}>{messages}</Suspense>
+      <Suspense fallback={<Loading />}>{messages}</Suspense>
     </div>
   );
 };
