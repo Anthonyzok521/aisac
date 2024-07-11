@@ -41,7 +41,7 @@ export const Profile: React.FC<Props> = (props: Props) => {
   };
 
   useEffect(() => {
-    setUser(cookies.get('user_sid')[0] ?? 'Tú');
+    setUser(cookies.get('user_sid') ?? 'Tú');
   }, []);
 
   return (
