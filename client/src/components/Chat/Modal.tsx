@@ -24,10 +24,9 @@ export const Modal: React.FC = () => {
 
   const insertName = () => {
     const expires = new Date();
-    const modal = document.querySelector("#modal")
     expires.setFullYear(expires.getFullYear() + 1);
     cookies.set('user_sid', user, { path: '/', expires: expires});
-    modal?.classList.add("hidden");
+    window.location.href = '/';
   }
 
   const omitInsertName = () => {
