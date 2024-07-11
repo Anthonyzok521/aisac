@@ -111,7 +111,7 @@ export const PromptUser: React.FC<Props> = (props: Props) => {
       const newMessageUser: React.ReactNode = (
         <Message role={"user"} prompt={prompt} key={key} />
       );
-      const loading: React.ReactNode = <Loading role={"user"} />;
+      const loading: React.ReactNode = <Loading />;
       setMessages([...messages, newMessageUser, loading]);
       //Run AI Since API
       fetch(host + "/api/aisac/", {
