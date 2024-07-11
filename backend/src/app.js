@@ -14,7 +14,6 @@ app.use(cors());
 aisac.LoadFiles();
 
 app.get('/', async(req, res) => {
-    aisac.LoadFiles();
     console.log({ message: "AISAC Initialized" })
     res.json({ message: "AISAC Initialized" });
 })
