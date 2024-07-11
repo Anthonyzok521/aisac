@@ -183,7 +183,7 @@ export const PromptUser: React.FC<Props> = (props: Props) => {
       {/* //OnClick | Hidden Button */}
       <div
         id="prompt"
-        className="max-md:z-50 transition-all duration-300 ease w-full h-12 max-h-max z-1 flex items-end fixed bottom-10 max-md:bottom-0 justify-center"
+        className="max-md:z-10 transition-all duration-300 ease w-full h-12 max-h-max z-1 flex items-end fixed bottom-10 justify-center"
       >
         {/* //Textarea | Multiline */}
         <textarea
@@ -197,10 +197,10 @@ export const PromptUser: React.FC<Props> = (props: Props) => {
           }}
           aria-multiline
           maxLength={1000}
-          className="transition-all duration-300 ease focus:rounded-s-lg 
-                    hover:rounded-s-lg md:rounded-s-3xl
+          className="transition-all duration-300 ease md:focus:rounded-s-lg 
+                    md:hover:rounded-s-lg md:rounded-s-3xl
                     max-md:rounded-t-3xl
-                    max-md:focus:rounded-lg
+                    max-md:focus:rounded-t-lg
                     max-md:p-10                    
                     outline-none p-2 w-2/5 max-md:w-full max-lg:w-3/5 h-full text-xl resize-none overflow-x-auto"
           name="prompt"
@@ -213,11 +213,11 @@ export const PromptUser: React.FC<Props> = (props: Props) => {
         >
           <ButtonSubmit inPC={inPC} key={"btnSubmit"}/>
         </div>
-        {inPC && (
-          <div className="absolute -bottom-10">
-            <h3 className="text-gray-600">Es posible que Aisac muestre información imprecisa, incluidos datos sobre personas, por lo que debes verificar sus respuestas.</h3>
+        
+          <div className="max-md:bg-white absolute -bottom-10">
+            <h3 className="text-gray-600 max-md:text-sm max-md:text-center">Es posible que Aisac muestre información imprecisa, incluidos datos sobre personas, por lo que debes verificar sus respuestas.</h3>
           </div>
-        )}
+        
       </div>
     </>
   );

@@ -50,8 +50,8 @@ export const Profile: React.FC<Props> = (props: Props) => {
       onClick={handleClick}
     >
       {user != "Tú" ? (
-        <div className="rounded-full h-full w-full active:size-10 transition-all bg-white max-md:bg-black">
-          <h1 className="text-black max-md:text-white font-manrope font-extrabold text-2xl flex justify-center items-center h-full w-full active:text-xl transition-all">
+        <div className="rounded-full h-full w-full active:size-10 transition-all bg-white">
+          <h1 className="text-black font-manrope font-extrabold text-2xl flex justify-center items-center h-full w-full active:text-xl transition-all">
             {user[0]}
           </h1>{" "}
         </div>
