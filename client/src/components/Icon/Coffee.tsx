@@ -1,15 +1,14 @@
 import React from "react";
 import { TbCoffee } from "react-icons/tb";
+import { Link } from "react-router-dom";
 
 export const Coffee: React.FC = () => {
 
-  const handleClick = () => {};
-
   return (
-    <div
+    <Link to={import.meta.env.VITE_WS}
+      target="_blank"
       id="coffee"
       className="flex justify-start items-center max-md:opacity-0 duration-100 hover:bg-slate-500 hover:cursor-pointer p-2 rounded-lg"
-      onClick={handleClick}
     >
       <div className="flex justify-center items-center gap-6">
         <div className="size-11 flex justify-center items-center">
@@ -20,6 +19,6 @@ export const Coffee: React.FC = () => {
           Limpiar Chat
         </span> */}
       </div>
-    </div>
+    </Link>
   );
 }

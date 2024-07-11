@@ -1,22 +1,28 @@
 //Prompt User
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ReactNode } from "react";
 import { Loading } from "./Loading.tsx";
 import { Inbox } from "./Inbox.tsx";
 import { Message } from "./Message.tsx";
 import { ButtonSubmit } from "../Icon/ButtonSubmit.tsx";
+import { SideBar } from "../UI/Header/Menu/SideBar";
 
-const host = import.meta.env.VITE_HOST;
+//const host = import.meta.env.VITE_HOST;
 
 type Props = {
   user: string;
   device: string;
 };
 
-export const PromptUser: React.FC<Props> = (props: Props) => {
-  const [messages, setMessages] = useState<Array<React.ReactNode>>([]);
+export const PromptUser: React.FC<Props> = ({user, device}: Props) => {
+  
+  const [messages, setMessages] = useState<Array<ReactNode>>([])
+
+  const cleanMessages = () =>{
+    setMessages([]);
+  }
 
   //Style Button | Visible or Hidden
-  const [inPC, setInPC] = useState(props.device === "desktop");
+  const [inPC, setInPC] = useState(device === "desktop");
   const [show, setShow] = useState(inPC ? "disabled" : "hidden");
 
   useEffect(() => {
@@ -43,8 +49,9 @@ export const PromptUser: React.FC<Props> = (props: Props) => {
     }
   };
   const Visible = (mouse: string = "") => {
+    const text = document.querySelector("textarea")?.value ?? '';
     if (!inPC) {
-      if (document.querySelector("textarea")?.value !== "") {
+      if (text.trim() != '') {
         document.querySelector("#btn-submit")?.removeAttribute("disabled");
         document.querySelector("#btn-submit")?.setAttribute("enabled", "");
         setShow("visible");
@@ -54,7 +61,7 @@ export const PromptUser: React.FC<Props> = (props: Props) => {
         setShow("hidden");
       }
     } else {
-      if (document.querySelector("textarea")?.value !== "") {
+      if (text.trim() != '') {
         document.querySelector("#btn-submit")?.removeAttribute("disabled");
         document.querySelector("#btn-submit")?.setAttribute("enabled", "");
         document
@@ -95,7 +102,7 @@ export const PromptUser: React.FC<Props> = (props: Props) => {
 
       //Get Prompt
       const textarea = document.querySelector("textarea");
-      const prompt: string = textarea?.value || "";
+      const prompt: string = textarea?.value.trim() || "";
       //Reset Prompt
 
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -109,12 +116,12 @@ export const PromptUser: React.FC<Props> = (props: Props) => {
         prompt[prompt.length - 1];
       //Show Message
       const newMessageUser: React.ReactNode = (
-        <Message role={props.user} prompt={prompt} key={key} />
+        <Message role={user} prompt={prompt} key={key} />
       );
       const loading: React.ReactNode = <Loading />;
       setMessages([...messages, newMessageUser, loading]);
       //Run AI Since API
-      fetch(host + "/api/aisac/", {
+      /* fetch(host + "/api/aisac/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json", // Assuming you're sending JSON data
@@ -146,14 +153,13 @@ export const PromptUser: React.FC<Props> = (props: Props) => {
           );
 
           setMessages([...messages, newMessageUser, newMessageAI]);
-        });
+        }); */
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      /* debug 
+      /* debug */
         const newMessageAI = <Message role="assistant" prompt={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas similique, dolor voluptatibus odit deserunt tenetur modi voluptate molestiae, id tempora tempore minima. Modi placeat assumenda ex debitis unde totam a!"} key={key + (Math.random() * 100).toString()} />;
-
-        setMessages([...messages, newMessageUser, newMessageAI]); 
-        */
+        
+        setMessages([...messages, newMessageUser, newMessageAI]);
     }
     Hidden();
   };
@@ -178,6 +184,7 @@ export const PromptUser: React.FC<Props> = (props: Props) => {
 
   return (
     <>
+      <SideBar device={device} clean={cleanMessages}/>
       <Inbox messages={messages} key={"inbox"}/>
 
       {/* //OnClick | Hidden Button */}

@@ -8,15 +8,17 @@ import { Footer } from "../../Footer/Footer";
 import { Coffee } from "../../../Icon/Coffee";
 
 type Props = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  clean: any,
   device: string;
 };
 
-export const SideBar: React.FC<Props> = (props: Props) => {
+export const SideBar: React.FC<Props> = ({device, clean}: Props) => {
   return (
-    <nav id="sidebar" className="fixed flex flex-col justify-between h-dvh max-md:w-3 w-1/5 bg-slate-700  rounded-e-lg z-10 transition-all">
-        <Header device={props.device} />
+    <nav id="sidebar" className="fixed flex flex-col justify-between h-dvh max-md:w-3 w-1/5 bg-slate-700  rounded-e-lg z-10 transition-all left-0">
+        <Header device={device} />
         <ul id="menu" className="flex flex-col pt-20 p-3 gap-10">
-        <li><CleanChat /></li>        
+        <li><CleanChat clean={clean}/></li>        
         <li><Upload /></li>        
         <li><Settings /></li>        
         <li><FeedBack /></li>        

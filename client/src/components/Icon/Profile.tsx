@@ -51,7 +51,7 @@ export const Profile: React.FC<Props> = (props: Props) => {
     >
       {user != "Tú" ? (
         <div className="rounded-full h-full w-full active:size-10 transition-all bg-white">
-          <h1 className="text-black font-manrope font-extrabold text-2xl flex justify-center items-center h-full w-full active:text-xl transition-all">
+          <h1 className="text-black font-manrope font-extrabold text-2xl flex justify-center items-center h-full w-full active:text-xl transition-all select-none">
             {user[0]}
           </h1>{" "}
         </div>

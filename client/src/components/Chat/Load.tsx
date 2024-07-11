@@ -1,11 +1,11 @@
-import React, { Suspense, lazy, useEffect, useState} from "react"
+import React, {Suspense, lazy, useEffect, useState} from "react"
 import {Modal} from "./Modal.tsx";
 import Cookies from 'universal-cookie'
 
 const PromptUser = lazy(() => import("./PromptUser.tsx"));
 
 type Props = {
-  device: string;
+  device: string
 }
 
 export const Load: React.FC<Props> = ({device}: Props) => {
@@ -34,7 +34,7 @@ export const Load: React.FC<Props> = ({device}: Props) => {
       </div>
     }>      
 
-      <PromptUser device={device} user={user ?? "Tú"} key={"prompt"}/>
+      <PromptUser device={device} user={user ?? "Tú"} key={"prompt"} />
 
       {!user && <Modal />}
 

@@ -1,11 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 *,
 *::before,
-*::after{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-right: 5px solid rgba(117, 117, 117, 0.068);
+    transition: all 1s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    border-right: 6px solid rgba(117, 117, 117, 0.24);
+    transition: all 1s ease;
 }
