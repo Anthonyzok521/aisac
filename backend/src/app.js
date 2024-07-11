@@ -1,24 +1,17 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const jwt = require("jsonwebtoken");
-const { dameQueso } = require("./config/config");
 const { AISAC } = require("./api/gemini.js");
 const aisac = new AISAC();
 
 require('dotenv').config();
 
-const whitelist = [process.env.HOST_1, process.env.HOST_2];
-
 app.use(express.json());
 app.use(cors({
-    origin: function(origin, callback) {
-        if (whitelist.indexOf(origin) !== -1) {
-            callback(null, true)
-        } else {
-            callback(new Error('Not allowed by CORS'))
-        }
-    }
+    origin: "*",
+    methods: "GET,HEAD,POST",
+    preflightContinue: false,
+    optionsSuccessStatus: 204
 }));
 
 aisac.LoadFiles();
