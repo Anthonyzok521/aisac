@@ -67,7 +67,7 @@ class AISAC {
             const result = await this.chatSession.sendMessage(prompt);
             return result;
         } catch (err) {
-            console.log(err);
+            console.log(err, this.chatSession);
             return err;
         }
     }
