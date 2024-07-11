@@ -11,7 +11,7 @@ type Props = {
 export const Inbox: React.FC<Props> = ({messages}: Props) => {
   return (
     <div
-      className="max-md:w-full md:w-3/5 pt-28 pb-24 flex flex-col gap-4 justify-start items-center overflow-y-auto snap-mandatory snap-y"
+      className="max-md:w-full md:w-3/5 pt-28 pb-40 flex flex-col gap-4 justify-start items-center overflow-y-auto snap-mandatory snap-y"
       id="inbox"
     >
       <div className="w-full flex justify-center pt-0">

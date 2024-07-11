@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { MdLiveHelp } from "react-icons/md";
 
 export const FeedBack: React.FC = () => {
   const handleClick = () => {};
 
   return (
-    <div
+    <Link to='/feedback'
       id="feedback"
       className="flex justify-start items-center max-md:opacity-0 duration-100 hover:bg-slate-500 hover:cursor-pointer p-2 rounded-lg"
       onClick={handleClick}
@@ -19,6 +20,6 @@ export const FeedBack: React.FC = () => {
           Feedback
         </span>
       </div>
-    </div>
+    </Link>
   );
 };

@@ -21,7 +21,7 @@ export const SideBar: React.FC<Props> = (props: Props) => {
         <li><Settings /></li>        
         <li><FeedBack /></li>        
         </ul>
-        <div className="flex flex-col justify-around items-center pb-20">
+        <div className="flex flex-col justify-around items-center pb-20 max-md:pb-32">
         <Coffee />
         <Footer />
         </div>        
