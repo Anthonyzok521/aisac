@@ -1,3 +1,4 @@
+const path = require('path');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const { GoogleAIFileManager } = require("@google/generative-ai/files");
 
@@ -11,7 +12,7 @@ class AISAC {
         this.fileManager = new GoogleAIFileManager(GEMINI_API_KEY);
 
         this.model = this.genAI.getGenerativeModel({
-            model: "gemini-1.5-pro",
+            model: "gemini-1.5-flash",
             systemInstruction: SYSTEM_INSTRUCTION,
         });
 
@@ -68,8 +69,8 @@ class AISAC {
 
     async LoadFiles() {
         const files = [
-            await this.uploadToGemini("src/documents/Pensum-Informática-2024.md", "text/markdown"),
-            await this.uploadToGemini("src/documents/Horarios-Profesores-Informática.md", "text/markdown"),
+            await this.uploadToGemini(path.join(__dirname, "/documents/Pensum-Informática-2024.md"), "text/markdown"),
+            await this.uploadToGemini(path.join(__dirname, "/documents/Horarios-Profesores-Informática.md"), "text/markdown"),
         ];
 
         const chatSession = this.model.startChat({
