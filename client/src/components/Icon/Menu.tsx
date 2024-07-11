@@ -9,6 +9,7 @@ export const Menu: React.FC<Props> = (props: Props) => {
   const [click, setClick] = useState(false);
 
   const handleClick = (inPc: boolean) => {
+    const title = document.querySelector("#title");
     const sidebar = document.querySelector("#sidebar");
     const footer = document.querySelector("#footer");
     //Icons
@@ -16,6 +17,7 @@ export const Menu: React.FC<Props> = (props: Props) => {
     const feedback = document.querySelector("#feedback");
     const clean = document.querySelector("#clean");
     const upload = document.querySelector("#upload");
+    const coffee = document.querySelector("#coffee");
     //Text Icons
     const settingsText = document.querySelector("#settingsText");
     const feedbackText = document.querySelector("#feedbackText");
@@ -33,6 +35,8 @@ export const Menu: React.FC<Props> = (props: Props) => {
         feedback?.classList.remove("max-md:opacity-100");
         clean?.classList.remove("max-md:opacity-100");
         upload?.classList.remove("max-md:opacity-100");
+        coffee?.classList.remove("max-md:opacity-100");
+        title?.classList.toggle("max-md:hidden");
         return;
       }
       sidebar?.classList.remove("max-md:w-3");
@@ -43,6 +47,8 @@ export const Menu: React.FC<Props> = (props: Props) => {
       feedback?.classList.add("max-md:opacity-100");
       clean?.classList.add("max-md:opacity-100");
       upload?.classList.add("max-md:opacity-100");
+      coffee?.classList.add("max-md:opacity-100");
+      title?.classList.toggle("max-md:hidden");
     }
 
     //Desktop
@@ -55,6 +61,7 @@ export const Menu: React.FC<Props> = (props: Props) => {
         feedbackText?.classList.toggle("hidden");
         cleanText?.classList.toggle("hidden");
         uploadText?.classList.toggle("hidden");
+        title?.classList.toggle("hidden");
         return;
       }
       sidebar?.classList.remove("w-20");
@@ -64,7 +71,10 @@ export const Menu: React.FC<Props> = (props: Props) => {
       feedbackText?.classList.toggle("hidden");
       cleanText?.classList.toggle("hidden");
       uploadText?.classList.toggle("hidden");
+      title?.classList.toggle("hidden");
     }
+    
+    
 
     setClick(!click);
   };

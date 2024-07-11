@@ -1,21 +1,18 @@
 import React from "react";
 
-type Props = {
-    role: string;
-};
-
-export const Loading = (props: Props) => {
+export const Loading: React.FC = () => {
 
     const messageClass = `
     my-2
-    w-full
+    max-md:w-full
+    md:w-2/5
     flex
     flex-col
     gap-4
     text-white 
     px-2     
-    ${props.role === 'assistant' ? 'border-s-4 ' : 'border-r-4 '}
-    ${props.role === 'assistant' ? 'border-sky-500' : 'border-slate-500'}
+    border-s-4 
+    border-sky-500
     `;
 
     const styleAssistant = `  

@@ -1,13 +1,16 @@
-// @ts-nocheck
-import { Suspense, lazy, useEffect, useState} from "react"
-import Modal from "../React/Modal.jsx";
+import React, { Suspense, lazy, useEffect, useState} from "react"
+import {Modal} from "./Modal.tsx";
 import Cookies from 'universal-cookie'
 
-const PromptUser = lazy(() => import("./PromptUser.js"));
+const PromptUser = lazy(() => import("./PromptUser.tsx"));
 
-const Load = ({host}) => {
+type Props = {
+  device: string;
+}
 
-  const [user, setUser] = useState();
+export const Load: React.FC<Props> = ({device}: Props) => {
+
+  const [user, setUser] = useState<string>();
 
   const cookies = new Cookies();
 
@@ -31,14 +34,12 @@ const Load = ({host}) => {
       </div>
     }>      
 
-      <PromptUser key={user+'prompt'} client:load user={user} host={host}/>
+      <PromptUser device={device}/>
 
-      {!user && <Modal client:load/>}
+      {!user && <Modal />}
 
     </Suspense>
 
 
   )
 }
-
-export default Load;

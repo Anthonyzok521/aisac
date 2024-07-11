@@ -1,17 +1,19 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Cookies from "universal-cookie";
 
-const Modal = () => {
+export const Modal: React.FC = () => {
 
-  const [check, setCheck] = useState(false);
-  const [terms, setTerms] = useState(false);
+  const [check, setCheck] = useState<boolean>(false);
+  const [terms, setTerms] = useState<boolean>(false);
 
-  const [user, setUser] = useState();
+  const [user, setUser] = useState<string>();
 
   const cookies = new Cookies();
 
   const checkTerms = () => {
-    document.querySelector("#terms").checked = !document.querySelector("#terms").checked;
+    const checkTerms = document.querySelector("#terms");
+    //@ts-expect-error the left-hand side of an assignment expression may not be optional property access.
+    checkTerms.checked = !checkTerms?.checked;
 
     setCheck(!check);
   }
@@ -22,18 +24,19 @@ const Modal = () => {
 
   const insertName = () => {
     const expires = new Date();
+    const modal = document.querySelector("#modal")
     expires.setFullYear(expires.getFullYear() + 1);
     cookies.set('user_sid', user, { path: '/', expires: expires});
-    setUser(user);
-    document.querySelector("#modal").classList.add("hidden");
+    modal?.classList.add("hidden");
   }
 
   const omitInsertName = () => {
+    const modal = document.querySelector("#modal");
     setUser("Tú");
-    document.querySelector("#modal").classList.add("hidden");
+    modal?.classList.add("hidden");
   }
 
-  let styleCheck = `
+  const styleCheck = `
     transition-all
     rounded-lg
     w-10
@@ -71,7 +74,10 @@ const Modal = () => {
       : <div className="p-4 bg-white rounded-md flex flex-col wrap gap-2">
           <div className="text-sm font-poppins font-bold">¿Quieres añadir tu nombre para una mejor experiencia de usuario?</div>
           <div className="h-full w-full ">
-            <input onInput={(e) => setUser(e.target.value)} minLength={3} maxLength={10} type="text" name="name" id="name" className="w-full p-2 border border-gray-300 rounded outline-none focus:border-sky-500 transition-all font-manrope" placeholder="Tu nombre" />
+            <input onInput={(e) => {
+              //@ts-expect-error Property 'value' does not exist on type 'EventTarget'.ts(2339)
+              setUser(e.target.value)}
+              } minLength={3} maxLength={10} type="text" name="name" id="name" className="w-full p-2 border border-gray-300 rounded outline-none focus:border-sky-500 transition-all font-manrope" placeholder="Tu nombre" />
             <div className="flex justify-between mt-2">            
             <button className="p-2 bg-sky-500 text-white rounded disabled:active:translate-x-0.5 enabled:active:translate-y-0.5 disabled:bg-gray-600 transition-all" disabled={!check} onClick={omitInsertName}>Omitir por ahora</button>
             <button className="p-2 bg-green-500 text-white rounded disabled:active:translate-x-0.5 enabled:active:translate-y-0.5 disabled:bg-gray-600 transition-all" disabled={!user} onClick={insertName}>Continuar</button>
@@ -81,5 +87,3 @@ const Modal = () => {
     </div>
   )
 }
-
-export default Modal;

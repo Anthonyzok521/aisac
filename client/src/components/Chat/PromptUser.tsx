@@ -1,22 +1,23 @@
 //Prompt User
-import React, { useState, useEffect, Suspense, lazy } from "react";
-import { Loading } from "./Loading.jsx";
-import { Avatar } from "../Icon/Avatar.tsx";
-
+import React, { useState, useEffect } from "react";
+import { Loading } from "./Loading.tsx";
+import { Inbox } from "./Inbox.tsx";
 import { Message } from "./Message.tsx";
+import { ButtonSubmit } from "../Icon/ButtonSubmit.tsx";
+
 const host = import.meta.env.VITE_HOST;
 
 type Props = {
-    device: string;
-}
+  device: string;
+};
 
 export const PromptUser: React.FC<Props> = (props: Props) => {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<Array<React.ReactNode>>([]);
 
   //Style Button | Visible or Hidden
   const [inPC, setInPC] = useState(props.device === "desktop");
   const [show, setShow] = useState(inPC ? "disabled" : "hidden");
-    console.log(inPC);
+
   useEffect(() => {
     if (window.screen.width >= 768) {
       setInPC(true);
@@ -24,17 +25,6 @@ export const PromptUser: React.FC<Props> = (props: Props) => {
       setInPC(false);
     }
   }, []);
-
-  const style = `       
-        transition-all 
-        ${inPC ? 'hover:text-white' : 'hover:text-sky-500'}
-        disabled:hover:text-black
-        text-black 
-        font-bold 
-        py-2 
-        px-4
-        z-10
-    `
 
   //OnClick | Hidden Button
   const Hidden = () => {
@@ -51,7 +41,7 @@ export const PromptUser: React.FC<Props> = (props: Props) => {
       setShow("hidden");
     }
   };
-  const Visible = (mouse:string = "") => {
+  const Visible = (mouse: string = "") => {
     if (!inPC) {
       if (document.querySelector("textarea")?.value !== "") {
         document.querySelector("#btn-submit")?.removeAttribute("disabled");
@@ -104,18 +94,24 @@ export const PromptUser: React.FC<Props> = (props: Props) => {
 
       //Get Prompt
       const textarea = document.querySelector("textarea");
-      const prompt = textarea?.value;
+      const prompt: string = textarea?.value || "";
       console.log(prompt);
       //Reset Prompt
+
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       textarea.value = "";
 
       //Key
-      const key = prompt[0] + ((Math.random() * 100) / 3).toString() + prompt[prompt.length - 1];
+      const key =
+        prompt[0] +
+        ((Math.random() * 100) / 3).toString() +
+        prompt[prompt.length - 1];
       //Show Message
-      const newMessageUser = (
+      const newMessageUser: React.ReactNode = (
         <Message role={"user"} prompt={prompt} key={key} />
       );
-      const loading = <Loading role={"user"} />;
+      const loading: React.ReactNode = <Loading role={"user"} />;
       setMessages([...messages, newMessageUser, loading]);
       //Run AI Since API
       fetch(host + "/api/aisac/", {
@@ -134,6 +130,7 @@ export const PromptUser: React.FC<Props> = (props: Props) => {
               key={key + (Math.random() * 100).toString()}
             />
           );
+
           setMessages([...messages, newMessageUser, newMessageAI]);
         })
         .catch((error) => {
@@ -150,10 +147,13 @@ export const PromptUser: React.FC<Props> = (props: Props) => {
 
           setMessages([...messages, newMessageUser, newMessageAI]);
         });
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      /* debug 
+        const newMessageAI = <Message role="assistant" prompt={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas similique, dolor voluptatibus odit deserunt tenetur modi voluptate molestiae, id tempora tempore minima. Modi placeat assumenda ex debitis unde totam a!"} key={key + (Math.random() * 100).toString()} />;
 
-      /* const newMessageAI = <Message role="assistant" prompt={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas similique, dolor voluptatibus odit deserunt tenetur modi voluptate molestiae, id tempora tempore minima. Modi placeat assumenda ex debitis unde totam a!"} key={key + (Math.random() * 100).toString()} />;
-
-                setMessages([...messages, newMessageUser, newMessageAI]); */
+        setMessages([...messages, newMessageUser, newMessageAI]); 
+        */
     }
     Hidden();
   };
@@ -170,32 +170,20 @@ export const PromptUser: React.FC<Props> = (props: Props) => {
 
   useEffect(() => {
     //Scroll
-    document.querySelectorAll("#inbox > div")[document.querySelectorAll("#inbox>div").length - 1].scrollIntoView({
+    document
+      .querySelectorAll("#inbox > div")[document.querySelectorAll("#inbox>div").length - 1].scrollIntoView({
         behavior: "smooth",
       });
   }, [messages]);
 
   return (
-    <main className="h-screen relative flex justify-center flex-col items-center container w-full overflow-hidden z-14">
-      <div
-        className="overflow-y-auto snap-mandatory snap-y w-2/5 max-md:w-full max-lg:w-3/5 pt-20 pb-24 flex flex-col gap-4"
-        id="inbox"
-      >
-        <div className=" flex justify-center pt-0">
-          <Avatar role="assistant" size="120" />
-        </div>
-        <Message
-          role="assistant"
-          prompt="Hola, soy tu asistente. ¿En que te puedo ayudar?"
-          key="init"
-        />
-        <Suspense fallback={<Loading role="assistant"/>}>{messages}</Suspense>
-      </div>
+    <>
+      <Inbox messages={messages} />
 
       {/* //OnClick | Hidden Button */}
       <div
         id="prompt"
-        className="transition-all duration-300 ease w-9/12 h-12 max-h-max z-1 flex items-end absolute max-md:fixed bottom-10 max-md:bottom-0 justify-center"
+        className="max-md:z-50 transition-all duration-300 ease w-full h-12 max-h-max z-1 flex items-end fixed bottom-10 max-md:bottom-0 justify-center"
       >
         {/* //Textarea | Multiline */}
         <textarea
@@ -210,10 +198,10 @@ export const PromptUser: React.FC<Props> = (props: Props) => {
           aria-multiline
           maxLength={1000}
           className="transition-all duration-300 ease focus:rounded-s-lg 
-                    hover:rounded-s-lg rounded-s-3xl
-                    max-md:rounded-3xl
+                    hover:rounded-s-lg md:rounded-s-3xl
+                    max-md:rounded-t-3xl
                     max-md:focus:rounded-lg
-                    max-md:pr-10
+                    max-md:p-10                    
                     outline-none p-2 w-2/5 max-md:w-full max-lg:w-3/5 h-full text-xl resize-none overflow-x-auto"
           name="prompt"
           placeholder="Escribe tu pregunta aqui"
@@ -223,32 +211,15 @@ export const PromptUser: React.FC<Props> = (props: Props) => {
           id="container-btn-submit"
           className="transition-all h-full flex justify-center items-center bg-white rounded-e-3xl max-md:absolute max-md:right-0 max-md:bg-transparent"
         >
-          <button
-            disabled
-            id="btn-submit"
-            type="submit"
-            name="submit"
-            className={style}
-          >
-            {/* Icon Submit | SVG - Heroicons */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="size-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
-              />
-            </svg>
-          </button>
+          <ButtonSubmit inPC={inPC} />
         </div>
+        {inPC && (
+          <div className="absolute -bottom-10">
+            <h3 className="text-gray-600">Es posible que Aisac muestre información imprecisa, incluidos datos sobre personas, por lo que debes verificar sus respuestas.</h3>
+          </div>
+        )}
       </div>
-    </main>
+    </>
   );
 };
 export default PromptUser;

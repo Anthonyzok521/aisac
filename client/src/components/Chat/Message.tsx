@@ -13,12 +13,14 @@ export const Message: React.FC<Props> = (props: Props) => {
     //Classes Tailwind
     const messageClass = `
     my-2
-    w-full
+    md:w-2/5
+    max-md:w-full
     flex
     flex-col
     gap-4
     text-white 
-    px-2     
+    md:px-2     
+    max-md:px-10
     ${props.role === 'assistant' ? 'border-s-4 ' : 'border-r-4 '}
     ${props.role === 'assistant' ? 'border-sky-500' : 'border-slate-500'}
     `;

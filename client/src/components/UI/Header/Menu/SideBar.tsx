@@ -5,6 +5,7 @@ import { FeedBack } from "../../../Icon/FeedBack";
 import { CleanChat } from "../../../Icon/CleanChat";
 import { Upload } from "../../../Icon/Upload";
 import { Footer } from "../../Footer/Footer";
+import { Coffee } from "../../../Icon/Coffee";
 
 type Props = {
   device: string;
@@ -20,7 +21,10 @@ export const SideBar: React.FC<Props> = (props: Props) => {
         <li><Settings /></li>        
         <li><FeedBack /></li>        
         </ul>
+        <div className="flex flex-col justify-around items-center pb-20">
+        <Coffee />
         <Footer />
+        </div>        
     </nav>
   );
 };
