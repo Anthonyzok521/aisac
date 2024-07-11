@@ -8,8 +8,18 @@ const aisac = new AISAC();
 
 require('dotenv').config();
 
+const whitelist = [process.env.HOST];
+
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: function(origin, callback) {
+        if (whitelist.indexOf(origin) !== -1) {
+            callback(null, true)
+        } else {
+            callback(new Error('Not allowed by CORS'))
+        }
+    }
+}));
 
 aisac.LoadFiles();
 
