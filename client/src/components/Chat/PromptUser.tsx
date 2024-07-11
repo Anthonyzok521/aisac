@@ -8,6 +8,7 @@ import { ButtonSubmit } from "../Icon/ButtonSubmit.tsx";
 const host = import.meta.env.VITE_HOST;
 
 type Props = {
+  user: string;
   device: string;
 };
 
@@ -108,7 +109,7 @@ export const PromptUser: React.FC<Props> = (props: Props) => {
         prompt[prompt.length - 1];
       //Show Message
       const newMessageUser: React.ReactNode = (
-        <Message role={"user"} prompt={prompt} key={key} />
+        <Message role={props.user} prompt={prompt} key={key} />
       );
       const loading: React.ReactNode = <Loading />;
       setMessages([...messages, newMessageUser, loading]);
