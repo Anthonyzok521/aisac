@@ -69,8 +69,8 @@ class AISAC {
 
     async LoadFiles() {
         const files = [
-            await this.uploadToGemini(path.join(__dirname, "/documents/Pensum-Informática-2024.md"), "text/markdown"),
-            await this.uploadToGemini(path.join(__dirname, "/documents/Horarios-Profesores-Informática.md"), "text/markdown"),
+            await this.uploadToGemini(path.join(__dirname, "../documents/Pensum-Informática-2024.md"), "text/markdown"),
+            await this.uploadToGemini(path.join(__dirname, "../documents/Horarios-Profesores-Informática.md"), "text/markdown"),
         ];
 
         const chatSession = this.model.startChat({
