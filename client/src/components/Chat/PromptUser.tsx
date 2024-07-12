@@ -6,7 +6,7 @@ import { Message } from "./Message.tsx";
 import { ButtonSubmit } from "../Icon/ButtonSubmit.tsx";
 import { SideBar } from "../UI/Header/Menu/SideBar";
 
-//const host = import.meta.env.VITE_HOST;
+const host = import.meta.env.VITE_HOST;
 
 type Props = {
   user: string;
@@ -121,7 +121,7 @@ export const PromptUser: React.FC<Props> = ({user, device}: Props) => {
       const loading: React.ReactNode = <Loading />;
       setMessages([...messages, newMessageUser, loading]);
       //Run AI Since API
-      /* fetch(host + "/api/aisac/", {
+      fetch(host + "/api/aisac/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json", // Assuming you're sending JSON data
@@ -153,13 +153,13 @@ export const PromptUser: React.FC<Props> = ({user, device}: Props) => {
           );
 
           setMessages([...messages, newMessageUser, newMessageAI]);
-        }); */
+        }); 
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      /* debug */
+      /* debug
         const newMessageAI = <Message role="assistant" prompt={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas similique, dolor voluptatibus odit deserunt tenetur modi voluptate molestiae, id tempora tempore minima. Modi placeat assumenda ex debitis unde totam a!"} key={key + (Math.random() * 100).toString()} />;
         
-        setMessages([...messages, newMessageUser, newMessageAI]);
+        setMessages([...messages, newMessageUser, newMessageAI]);*/
     }
     Hidden();
   };
