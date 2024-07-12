@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { IoSettingsSharp } from "react-icons/io5";
+import { Toast } from "../UI/Toast";
 
 export const Settings: React.FC = () => {
-  const handleClick = () => {};
+  
+  const [setting, setSettings] = useState<boolean>(false);
+
+  const handleClick = () => {setSettings(true)};
+
+  useEffect(()=>{
+    setTimeout(()=>{
+      setSettings(false)
+    }, 1500)
+  })
 
   return (
     <div
@@ -19,6 +29,7 @@ export const Settings: React.FC = () => {
           Configuraciones
         </span>
       </div>
+      {setting && <Toast alert="Función en Desarrollo"/>}
     </div>
   );
 };

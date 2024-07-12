@@ -52,7 +52,10 @@ export const FeedBack: React.FC = () => {
                         <label for="message" class="block mb-2 text-sm font-medium text-gray-400">Comentario</label>
                         <textarea id="message" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 " placeholder="Tu comentario aquí..."></textarea>
                     </div>
+                    <div className='flex justify-between'>
                     <button type="submit" class="py-3 px-5 text-sm font-medium text-center bg-sky-500 text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 ">Enviar Feedback</button>
+                    <Link to='/' class="py-3 px-5 text-sm font-medium text-center bg-gray-500 text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 ">Volver</Link>
+                    </div>
                 </form></>
                     :
                     <>  <div className='w-full flex flex-col justify-content items-center'>

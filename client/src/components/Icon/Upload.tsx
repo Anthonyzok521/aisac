@@ -1,8 +1,17 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { FaFileUpload } from "react-icons/fa";
+import { Toast } from "../UI/Toast";
 
 export const Upload: React.FC = () => {
-  const handleClick = () => {};
+  const [upload, setUpload] = useState<boolean>(false);
+
+  const handleClick = () => {setUpload(true)};
+
+  useEffect(()=>{
+    setTimeout(()=>{
+      setUpload(false)
+    }, 1500)
+  })
 
   return (
     <div
@@ -19,6 +28,7 @@ export const Upload: React.FC = () => {
           Subir un archivo
         </span>
       </div>
+      {upload && <Toast alert="Función en Desarrollo"/>}
     </div>
   );
 };
