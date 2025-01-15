@@ -37,6 +37,7 @@ export function useChat() {
 
       fetch(host + "/api/aisac/", {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json", // Assuming you're sending JSON data
         },
