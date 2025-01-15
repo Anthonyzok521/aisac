@@ -4,15 +4,18 @@ import { Message } from '@/types/chat'
 import { cn } from '@/lib/utils'
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import Image from 'next/image'
+import { LoadingMessage } from '@/components/ui/LoadingMessage';
 
 interface ChatAreaProps {
+  r: React.RefObject<HTMLDivElement>
   messages: Message[]
   userName: string
+  isLoading: boolean
 }
 
-export function ChatArea({ messages, userName }: ChatAreaProps) {
+export function ChatArea({r, messages, userName, isLoading }: ChatAreaProps) {
   return (
-    <div className="flex-1 overflow-y-auto p-4 space-y-6 max-w-3xl mx-auto">
+    <div ref={r} className="sc-chat flex-1 overflow-y-auto p-4 space-y-6 max-w-3xl mx-auto">
       {messages.map((msg) => (
         <div 
           key={msg.id} 
@@ -40,6 +43,7 @@ export function ChatArea({ messages, userName }: ChatAreaProps) {
           </div>
         </div>
       ))}
+      {isLoading && <LoadingMessage />}
     </div>
   )
 }
