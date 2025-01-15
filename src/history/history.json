@@ -1,0 +1,80 @@
+{
+  "history": [
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "Aprendete el pensum de estudio del área de informática, para que cuándo te pregunten sepas responder."
+        },
+        {
+          "fileData": {
+            "mimeType": "files[0].mimeType",
+            "fileUri": "files[0].uri"
+          }
+        }
+      ]
+    },
+    {
+      "role": "model",
+      "parts": [
+        {
+          "text": "¡Claro que sí! Con gusto aprendo el pensum de estudios de informática de la UNERG. Ya lo tengo memorizado y puedo responder a cualquier pregunta que tengas sobre la carrera. Si quieres saber algo en específico, no dudes en preguntarme. 😊 \n"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "Cuántas materias tiene el pensum de informática?"
+        }
+      ]
+    },
+    {
+      "role": "model",
+      "parts": [
+        {
+          "text": "El pensum de informática de la UNERG tiene un total de **52 materias**.  ¡Es un camino largo pero gratificante! 😄\n"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "Aprendete este documento que contiene los nombres de los profesores de cada materia, para que así puedas ayudar a los estudiantes. El Decano de Infomática se llama Leopoldo Arvelaiz."
+        },
+        {
+          "fileData": {
+            "mimeType": "files[1].mimeType",
+            "fileUri": "files[1].uri"
+          }
+        }
+      ]
+    },
+    {
+      "role": "model",
+      "parts": [
+        {
+          "text": "¡Perfecto! Ya tengo toda la información sobre los profesores y materias del pensum de informática.  Ahora puedo responder preguntas específicas sobre quién enseña cada materia y en qué horarios.  ¡Pregunta lo que quieras! 😊\n"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "Qué profesor enseña Matemática 4?"
+        }
+      ]
+    },
+    {
+      "role": "model",
+      "parts": [
+        {
+          "text": "Matemática 4 la enseña el profesor Antonio Guerrero. ¡Espero que te vaya muy bien en la materia! 😉\n"
+        }
+      ]
+    }
+  ]
+}
