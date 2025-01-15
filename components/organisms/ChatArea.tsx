@@ -3,6 +3,7 @@
 import { Message } from '@/types/chat'
 import { cn } from '@/lib/utils'
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import Image from 'next/image'
 
 interface ChatAreaProps {
   messages: Message[]
@@ -21,7 +22,11 @@ export function ChatArea({ messages, userName }: ChatAreaProps) {
           )}
         >
           <Avatar className="w-8 h-8">
-            <AvatarFallback>{msg.role === 'user' ? userName.charAt(0) : 'AI'}</AvatarFallback>
+            {msg.role === 'user' ?
+            <AvatarFallback>{userName.charAt(0)}</AvatarFallback>
+            :
+            <Image src="/aisac-logo.svg" alt="AISAC Logo" width={32} height={32} />
+          }
           </Avatar>
           <div 
             className={cn(

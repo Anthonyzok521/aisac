@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Checkbox } from "@/components/ui/checkbox"
+import { useRouter } from 'next/navigation'
 
 interface UserProfileProps {
   userName: string
@@ -12,6 +13,7 @@ interface UserProfileProps {
 
 export function UserProfile({ userName }: UserProfileProps) {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const navigate = useRouter();
 
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
@@ -47,7 +49,7 @@ export function UserProfile({ userName }: UserProfileProps) {
           </div>
           <Button variant="outline" className="w-full" onClick={() => {
             setIsDialogOpen(false)
-            // Aquí iría la lógica para mostrar las políticas de privacidad
+            navigate.push('/terms');
           }}>
             Políticas de Privacidad
           </Button>

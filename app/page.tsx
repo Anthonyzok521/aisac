@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import Link from 'next/link'
 
 export default function AISACChat() {
   const [userName, setUserName] = useState('')
@@ -30,8 +31,7 @@ export default function AISACChat() {
     return null
   }
 
-  const handleAcceptTerms = () => {
-    setIsTermsAccepted(true)
+  const handleAcceptTerms = () => {    
     setIsTermsDialogOpen(false)
     setIsNameDialogOpen(true)
   }
@@ -44,17 +44,16 @@ export default function AISACChat() {
 
   return (
     <>
-      <Dialog open={isTermsDialogOpen} onOpenChange={setIsTermsDialogOpen}>
+      <Dialog open={isTermsDialogOpen}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Términos y Condiciones</DialogTitle>
           </DialogHeader>
-          <div className="max-h-[60vh] overflow-y-auto">
-            {/* Aquí va el contenido de los términos y condiciones */}
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc id aliquam tincidunt, nisl nunc tincidunt nunc, vitae aliquam nunc nunc vitae nunc.</p>
+          <div className="max-h-[60vh] overflow-y-auto">            
+            <Link className='underline' href={'/terms'}>Antes de continuar, por favor lee y acepta los términos y condiciones.</Link>
           </div>
           <div className="flex items-center space-x-2 mt-4">
-            <Checkbox id="terms" />
+            <Checkbox id="terms" onClick={() => {setIsTermsAccepted(!isTermsAccepted); console.log(isTermsAccepted)}}/>
             <label
               htmlFor="terms"
               className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -63,12 +62,12 @@ export default function AISACChat() {
             </label>
           </div>
           <DialogFooter>
-            <Button onClick={handleAcceptTerms}>Continuar</Button>
+            <Button onClick={handleAcceptTerms} disabled={isTermsAccepted ? false : true}>Continuar</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
 
-      <Dialog open={isNameDialogOpen} onOpenChange={setIsNameDialogOpen}>
+      <Dialog open={isNameDialogOpen}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Bienvenido a AISAC</DialogTitle>

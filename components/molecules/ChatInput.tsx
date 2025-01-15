@@ -1,6 +1,6 @@
 'use client'
 
-import { ImageIcon, Send } from 'lucide-react'
+import { Send } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { ChatInputProps } from '@/types/chat'
@@ -23,7 +23,7 @@ export function ChatInput({
       {...props}
     >
       <div className="relative flex w-full items-center">
-        <Button
+        {/* <Button
           type="button"
           variant="ghost"
           size="icon"
@@ -31,13 +31,13 @@ export function ChatInput({
           onClick={onAttachmentClick}
         >
           <ImageIcon className="h-5 w-5 text-muted-foreground" />
-        </Button>
-        <input
+        </Button> */}
+        <textarea
           value={value}
-          onChange={onChange}
-          placeholder="Texto"
-          className="w-full bg-accent/50 backdrop-blur-sm rounded-full pl-12 pr-12 py-6 focus:outline-none focus:ring-2 focus:ring-primary/20 text-base"
-        />
+          onChange={(e) => onChange(e)}
+          placeholder="Escribe un mensaje..."
+          className="w-full bg-accent/50 backdrop-blur-sm rounded-md pl-12 pr-12 py-6 focus:outline-none focus:ring-2 focus:ring-primary/20 text-base"
+        ></textarea>
         <Button
           type="submit"
           size="icon"

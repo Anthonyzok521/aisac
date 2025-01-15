@@ -5,6 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Plus, X, Heart } from 'lucide-react'
 import { ThemeToggle } from "@/components/atoms/ThemeToggle"
 import { UploadTrainingDocumentDialog } from "@/components/molecules/UploadTrainingDocumentDialog"
+import { useRouter } from "next/navigation"
 
 interface SidebarProps {
   isOpen: boolean
@@ -13,6 +14,12 @@ interface SidebarProps {
 }
 
 export function Sidebar({ isOpen, onClose, userName }: SidebarProps) {
+  const navigate = useRouter();
+
+  const handleDonation = () => {
+    navigate.push('/donate');
+  }
+
   return (
     <aside className={`bg-card fixed inset-y-0 left-0 z-50 w-64 transform transition-transform duration-200 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:relative lg:translate-x-0`}>
       <Button
@@ -26,7 +33,7 @@ export function Sidebar({ isOpen, onClose, userName }: SidebarProps) {
       <div className="flex flex-col h-full p-4">
         <div className="flex items-center space-x-2 mb-6">
           <Avatar>
-            <AvatarImage src="/aisac-logo.png" alt="AISAC Logo" />
+            <AvatarImage src="/aisac-logo.svg" alt="AISAC Logo" />
             <AvatarFallback>AI</AvatarFallback>
           </Avatar>
           <span className="font-semibold text-lg">AISAC</span>
@@ -39,7 +46,7 @@ export function Sidebar({ isOpen, onClose, userName }: SidebarProps) {
         </nav>
         <div className="space-y-2">
           <UploadTrainingDocumentDialog userName={userName} />
-          <Button variant="ghost" className="w-full justify-start">
+          <Button variant="ghost" className="w-full justify-start" onClick={handleDonation}>
             <Heart className="mr-2 h-4 w-4" /> Donar al creador
           </Button>
           <ThemeToggle />

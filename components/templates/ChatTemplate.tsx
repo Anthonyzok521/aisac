@@ -8,6 +8,7 @@ import { ChatArea } from "@/components/organisms/ChatArea"
 import { ChatInput } from "@/components/molecules/ChatInput"
 import { UserProfile } from "@/components/molecules/UserProfile"
 import { useChat } from "@/hooks/useChat"
+import Image from 'next/image'
 
 interface ChatTemplateProps {
   userName: string
@@ -39,7 +40,11 @@ export function ChatTemplate({ userName }: ChatTemplateProps) {
           <UserProfile userName={userName} />
         </header>
 
-        <div className="flex-1 overflow-hidden px-4 md:px-8 lg:px-16 py-8">
+        <div className="flex overflow-hidden w-full justify-center py-8">
+          <Image src="/aisac-logo.svg" alt="AISAC Logo" width={100} height={100} />
+        </div>
+
+        <div className="flex-1 overflow-y-auto px-4 md:px-8 lg:px-16 py-8">
           <ChatArea messages={messages} userName={userName} />
         </div>
 
@@ -52,6 +57,9 @@ export function ChatTemplate({ userName }: ChatTemplateProps) {
               console.log('Attachment clicked')
             }}
           />
+          <p className='flex pt-2 text-sm justify-center font-extralight text-white/20 text-center'>
+          Es posible que Aisac muestre información imprecisa, incluidos datos sobre personas, por lo que debes verificar sus respuestas.
+          </p>
         </footer>
       </main>
     </div>

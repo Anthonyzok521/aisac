@@ -10,7 +10,7 @@ export interface Message {
 export interface ChatInputProps extends HTMLAttributes<HTMLFormElement> {
   onSubmit: (e: FormEvent) => void
   value: string
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void
+  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
   onAttachmentClick?: () => void
 }
 

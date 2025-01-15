@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { BrainCircuit } from 'lucide-react'
 
 interface UploadTrainingDocumentDialogProps {
   userName: string
@@ -27,7 +28,7 @@ export function UploadTrainingDocumentDialog({ userName }: UploadTrainingDocumen
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button variant="ghost" className="w-full justify-start">
-          Subir documento de entrenamiento
+        <BrainCircuit className="mr-2 h-4 w-4" /> Entrenar IA
         </Button>
       </DialogTrigger>
       <DialogContent>

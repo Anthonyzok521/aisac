@@ -6,6 +6,7 @@ export function useChat() {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const host = process.env.NEXT_PUBLIC_API_URL;
 
   const sendMessage = useCallback(async (e: React.FormEvent) => {
     e.preventDefault()
@@ -25,16 +26,44 @@ export function useChat() {
     try {
       // Aquí iría la lógica para enviar el mensaje a la IA
       // Por ahora, simulamos una respuesta después de 1 segundo
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      /* await new Promise(resolve => setTimeout(resolve, 1000))
       
       const response: Message = {
         id: uuidv4(),
         role: 'assistant',
         content: 'Esta es una respuesta de ejemplo.',
         timestamp: new Date()
-      }
+      } */
 
-      setMessages(prev => [...prev, response])
+      fetch(host + "/api/aisac/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json", // Assuming you're sending JSON data
+        },
+        body: JSON.stringify({ prompt: prompt }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          const response: Message = {
+            id: uuidv4(),
+            role: 'assistant',
+            content: data.message,
+            timestamp: new Date()
+          }
+
+          setMessages(prev => [...prev, response])
+        })
+        .catch((error) => {
+          console.error(error);
+          const response: Message = {
+            id: uuidv4(),
+            role: 'assistant',
+            content: "Ocurrió un error por parte del servidor. Intenta otra vez.",
+            timestamp: new Date()
+          }
+
+          setMessages(prev => [...prev, response])
+        });
     } catch (error) {
       console.error('Error sending message:', error)
     } finally {
