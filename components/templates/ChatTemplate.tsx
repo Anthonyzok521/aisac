@@ -8,7 +8,6 @@ import { ChatArea } from "@/components/organisms/ChatArea"
 import { ChatInput } from "@/components/molecules/ChatInput"
 import { UserProfile } from "@/components/molecules/UserProfile"
 import { useChat } from "@/hooks/useChat"
-import Image from 'next/image'
 
 interface ChatTemplateProps {
   userName: string
@@ -16,7 +15,7 @@ interface ChatTemplateProps {
 
 export function ChatTemplate({ userName }: ChatTemplateProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const { messages, input, setInput, sendMessage, isLoading } = useChat()
+  const { messages, input, setInput, sendMessage, messagesEndRef, isLoading } = useChat()
 
   return (
     <div className="flex h-screen bg-background text-foreground">
@@ -40,12 +39,12 @@ export function ChatTemplate({ userName }: ChatTemplateProps) {
           <UserProfile userName={userName} />
         </header>
 
-        <div className="flex overflow-hidden w-full justify-center py-8">
-          <Image src="/aisac-logo.svg" alt="AISAC Logo" width={100} height={100} />
+        <div className={`flex ${messages.length == 0 ? '' : 'hidden'} overflow-hidden w-full justify-center py-8`}>
+          {userName ? 'Hola, ' + userName : 'Hola'}. En qué puedo ayudarte?
         </div>
 
         <div className="flex-1 overflow-y-auto px-4 md:px-8 lg:px-16 py-8">
-          <ChatArea messages={messages} userName={userName} />
+          <ChatArea r={messagesEndRef} messages={messages} userName={userName} isLoading={isLoading}/>
         </div>
 
         <footer className="bg-card/50 backdrop-blur-sm border-t border-border p-4">

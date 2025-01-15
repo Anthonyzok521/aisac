@@ -1,8 +1,9 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef, useEffect } from 'react'
 import { Message } from '@/types/chat'
 import { v4 as uuidv4 } from 'uuid'
 
 export function useChat() {
+  const messagesEndRef = useRef<HTMLDivElement>(null);
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -19,8 +20,7 @@ export function useChat() {
       timestamp: new Date()
     }
 
-    setMessages(prev => [...prev, newMessage])
-    setInput('')
+    setMessages(prev => [...prev, newMessage])    
     setIsLoading(true)
 
     try {
@@ -41,7 +41,7 @@ export function useChat() {
         headers: {
           "Content-Type": "application/json", // Assuming you're sending JSON data
         },
-        body: JSON.stringify({ prompt: prompt }),
+        body: JSON.stringify({ prompt: input }),
       })
         .then((response) => response.json())
         .then((data) => {
@@ -64,19 +64,27 @@ export function useChat() {
           }
 
           setMessages(prev => [...prev, response])
-        });
+        });        
     } catch (error) {
       console.error('Error sending message:', error)
     } finally {
+      setInput('')
       setIsLoading(false)
     }
   }, [input, isLoading])
+
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
+  }, [messages]);
 
   return {
     messages,
     input,
     setInput,
     sendMessage,
+    messagesEndRef,
     isLoading
   }
 }
