@@ -41,7 +41,7 @@ export function useChat() {
         headers: {
           "Content-Type": "application/json", // Assuming you're sending JSON data
         },
-        body: JSON.stringify({ prompt: input }),
+        body: JSON.stringify({ question: input }),
       })
         .then((response) => response.json())
         .then((data) => {
