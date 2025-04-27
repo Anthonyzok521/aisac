@@ -35,7 +35,7 @@ export function useChat() {
         timestamp: new Date()
       } */
 
-      fetch(host + "/api/aisac/", {
+      fetch(host + "/assistant", {
         method: "POST",
         credentials: "include",
         headers: {
@@ -48,7 +48,7 @@ export function useChat() {
           const response: Message = {
             id: uuidv4(),
             role: 'assistant',
-            content: data.message,
+            content: data.response,
             timestamp: new Date()
           }
 
