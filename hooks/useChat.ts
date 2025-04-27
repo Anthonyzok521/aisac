@@ -35,20 +35,20 @@ export function useChat() {
         timestamp: new Date()
       } */
 
-      fetch(host + "/api/aisac/", {
+      fetch(host + "/assistant", {
         method: "POST",
         credentials: "include",
         headers: {
           "Content-Type": "application/json", // Assuming you're sending JSON data
         },
-        body: JSON.stringify({ prompt: input }),
+        body: JSON.stringify({ question: input }),
       })
         .then((response) => response.json())
         .then((data) => {
           const response: Message = {
             id: uuidv4(),
             role: 'assistant',
-            content: data.message,
+            content: data.response,
             timestamp: new Date()
           }
 
