@@ -120,7 +120,7 @@ export function useAuth() {
             email: data.email,
             role: data.role,
             password_hash: passwordHash,
-            is_active: true,
+            is_in_group: true,
           },
         ])
         .select()
