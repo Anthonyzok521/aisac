@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { ExternalLink, BookOpen, MessageSquare, Users, Clock, CheckCircle, LogOut } from "lucide-react"
 import { useAuth } from "@/hooks/useAuth"
 import { useRouter } from "next/navigation"
+import Image from "next/image"
 
 export function StudentDashboard() {
   const { user, redirectToNotebook, logout } = useAuth()
@@ -25,7 +26,14 @@ export function StudentDashboard() {
             <div className="flex justify-center mb-6">
               <div className="relative">
                 <div className="w-24 h-24 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center shadow-lg">
-                  <img src="https://aisac.acteam.dev/aisac-logo.svg" alt="AISAC Logo" className="w-16 h-16" />
+                    <Image
+                        src="/aisac-logo.png"
+                        alt="AISAC Logo"
+                        width={96}
+                        height={96}
+                        className="w-full h-full object-contain"
+                        priority
+                    />
                 </div>
                 <div className="absolute -bottom-2 -right-2">
                   <Badge className="bg-green-500 text-white">
@@ -42,13 +50,13 @@ export function StudentDashboard() {
           </div>
 
           {/* Tarjeta principal de acceso */}
-          <Card className="border-2 border-blue-200 shadow-xl bg-white/80 backdrop-blur-sm">
+          <Card className="border-2 border-blue-200 shadow-xl bg-white backdrop-blur-sm">
             <CardHeader className="text-center pb-4">
               <CardTitle className="text-2xl text-blue-800 flex items-center justify-center gap-2">
                 <MessageSquare className="h-6 w-6" />
                 Acceso a AISAC
               </CardTitle>
-              <CardDescription className="text-lg">
+              <CardDescription className="text-lg text-black">
                 Haz clic en el botón para acceder a tu asistente de IA personalizado
               </CardDescription>
             </CardHeader>
@@ -60,7 +68,7 @@ export function StudentDashboard() {
                   className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
                 >
                   <ExternalLink className="mr-3 h-6 w-6" />
-                  Ir a AISAC en NotebookLM
+                  Ir a Chat AISAC
                 </Button>
               </div>
 
@@ -73,7 +81,6 @@ export function StudentDashboard() {
                       <li>• Hacer preguntas académicas sobre cualquier tema</li>
                       <li>• Obtener explicaciones detalladas y ejemplos</li>
                       <li>• Resolver dudas de tareas y proyectos</li>
-                      <li>• Acceder a recursos educativos personalizados</li>
                     </ul>
                   </div>
                 </div>
@@ -83,11 +90,11 @@ export function StudentDashboard() {
 
           {/* Información adicional */}
           <div className="grid md:grid-cols-2 gap-6">
-            <Card className="bg-white/60 backdrop-blur-sm">
+            <Card className="bg-white backdrop-blur-sm">
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
                   <Users className="h-5 w-5 text-green-600" />
-                  Comunidad AISAC
+                                  <span className="text-blue-800">Comunidad AISAC</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -109,11 +116,11 @@ export function StudentDashboard() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/60 backdrop-blur-sm">
+            <Card className="bg-white backdrop-blur-sm">
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
                   <Clock className="h-5 w-5 text-blue-600" />
-                  Disponibilidad
+                    <span className="text-blue-800">Disponibilidad</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>

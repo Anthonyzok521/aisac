@@ -34,14 +34,14 @@ export function TeacherDashboard() {
             <FileText className="h-4 w-4 mr-2" />
             Documentos
           </TabsTrigger>
-          <TabsTrigger value="users">
+{/*          <TabsTrigger value="users">
             <Users className="h-4 w-4 mr-2" />
             Usuarios
-          </TabsTrigger>
-          <TabsTrigger value="settings">
+          </TabsTrigger>*/}
+          {/*<TabsTrigger value="settings">
             <Settings className="h-4 w-4 mr-2" />
             Configuración
-          </TabsTrigger>
+          </TabsTrigger>*/}
         </TabsList>
 
         <TabsContent value="documents" className="space-y-4">

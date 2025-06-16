@@ -5,17 +5,22 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({ children }) {
-  return (
-    <html lang="es" suppressHydrationWarning>
+  return <>
+      <link
+          rel="icon"
+          href="/aisac-logo.png"
+          type="image/png"
+      />
+      <html lang="es" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
         </ThemeProvider>
       </body>
     </html>
-  )
+  </>
 }
 
 export const metadata = {
-      generator: 'v0.dev'
+      generator: 'acteam.dev'
     };
