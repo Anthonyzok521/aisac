@@ -108,7 +108,7 @@ export default function HomePage() {
           <DialogHeader>
             <DialogTitle className="text-center">Términos y Condiciones de AISAC</DialogTitle>
           </DialogHeader>
-          <div className="max-h-[60vh] overflow-y-auto space-y-4 py-4">
+          <div className="max-h-[40vh] overflow-y-auto space-y-4 py-4">
             <div className="text-sm text-gray-700 space-y-3">
               <h3 className="font-semibold text-base">Bienvenido a AISAC</h3>
               <p>
